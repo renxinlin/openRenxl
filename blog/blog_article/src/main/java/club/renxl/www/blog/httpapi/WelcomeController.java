@@ -1,4 +1,4 @@
-package com.blog.article.http.api;
+package club.renxl.www.blog.httpapi;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

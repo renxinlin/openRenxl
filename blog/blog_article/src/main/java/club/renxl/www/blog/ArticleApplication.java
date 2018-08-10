@@ -1,4 +1,4 @@
-package com.blog.article;
+package club.renxl.www.blog;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
