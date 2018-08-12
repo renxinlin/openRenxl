@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>club.renxl.www.blog</groupId>
 	<artifactId>blog</artifactId>
@@ -19,12 +17,24 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<eureka.version>1.4.2.RELEASE</eureka.version>
+		<jdbc.mysql.version>5.1.33</jdbc.mysql.version>
+		<mybatis.springboot.version>1.3.2</mybatis.springboot.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
-
-
+			<!-- db -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis.springboot.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${jdbc.mysql.version}</version>
+			</dependency>
 			<!-- club.renxl.com dependency start -->
 
 			<dependency>
@@ -55,21 +65,21 @@
 				<artifactId>spring-cloud-starter-eureka</artifactId>
 				<version>${eureka.version}</version>
 			</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka-server</artifactId>
-			<version>${eureka.version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		    <version>1.5.2.RELEASE</version>
-		</dependency>
-		
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-eureka-server</artifactId>
+				<version>${eureka.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-security</artifactId>
+				<version>1.5.2.RELEASE</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
-	 
+
 	<build>
 		<plugins>
 			<plugin>
@@ -82,5 +92,6 @@
 	<modules>
 		<module>blog_rigister_center</module>
 		<module>blog_article</module>
-	</modules>
+    <module>blog_article_commets_feign</module>
+  </modules>
 </project>

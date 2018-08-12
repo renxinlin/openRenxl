@@ -20,21 +20,4 @@ eureka:
       
 #      feign整合断路器默认的超时时间是1秒 可以设置feign的超时时间在一个合理值
 
-
-
-# --------------------------- mysql start -------------------------
-spring:
-  datasource:
-    url: jdbc:mysql://47.104.88.31:3306/elasticsearch-admin?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
-    username: test
-    password: Test@207
-    driverClassName: com.mysql.jdbc.Driver
-# --------------------------- mysql end ---------------------------
-#
-#
-# --------------------------- mybatis start -------------------------
-#
-mybatis:
-  mapperLocations: classpath*:com.xuemi.elevator.log.es.dao/*.xml
-  typeAliasesPackage: com.xuemi.elevator.log.es.bean
-# --------------------------- mybatis end ---------------------------
+# 当添加安全模块，默认eureka会生成一个user，日志打印其密码

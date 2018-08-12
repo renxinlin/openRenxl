@@ -18,6 +18,16 @@
 
 
 	<dependencies>
+	<!-- db -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+ 			</dependency>
+			
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+ 			</dependency>
 		<!-- club.renxl.com dependency start -->
 		<dependency>
 			<groupId>club.renxl.www</groupId>
