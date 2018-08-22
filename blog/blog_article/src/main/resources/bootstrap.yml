@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:10030 # b优先级大于application 这里不配置 默认配置服务器端口是8888
+      name: my   # app)
+      profile: hi
+      label: master   # 当configserver的后端存储是Git时，默认就是master  
+  # // 暂时不启动配置服务器太麻烦 请将配置服务器部署到生产环境，简化开发

@@ -15,10 +15,10 @@ public class IWelcomeImpl implements IWelcome {
 	@Autowired
 	private ArtitleMapper artitleMapper;
 	
-	public String	wel() {
+	public List<Artitle>	wel() {
 		ArtitleExample example = new 		ArtitleExample ();
 		List<Artitle> selectByExample = artitleMapper.selectByExample(example );
-		return selectByExample.toString();
+		return selectByExample;
 		
 	}
 }

@@ -18,16 +18,20 @@
 
 
 	<dependencies>
-	<!-- db -->
-			<dependency>
-				<groupId>org.mybatis.spring.boot</groupId>
-				<artifactId>mybatis-spring-boot-starter</artifactId>
- 			</dependency>
-			
-			<dependency>
-				<groupId>mysql</groupId>
-				<artifactId>mysql-connector-java</artifactId>
- 			</dependency>
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+		</dependency>
+		<!-- db -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
 		<!-- club.renxl.com dependency start -->
 		<dependency>
 			<groupId>club.renxl.www</groupId>
@@ -39,13 +43,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
-		
+
 		<!-- 提供者需要密码验证eureka，但不需要该模块 -->
 		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId> 
 			</dependency> -->
@@ -53,8 +57,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
-		
-		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
