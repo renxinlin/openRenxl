@@ -1,1 +1,19 @@
-spr
+server:
+  port: 8878
+
+eureka:
+  client: 
+    healthcheck:
+      enabled:true
+    service-url:
+      defaultZone: http://user:password123@localhost:10020/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}   
+    lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 10  # 发呆时间，即服务续约到期时间（缺省为90s）
+
+# 个人对eureka租期续约的理解，客户端定期注册，服务端定期扫描，客户端还有一个注册失败的清除时间
+spring:
+  application:
+    name: customer_comments 

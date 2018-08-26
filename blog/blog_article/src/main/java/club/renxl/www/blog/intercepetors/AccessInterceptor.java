@@ -7,6 +7,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+/**
+ * 跨域请求
+ * @author win10
+ *
+ */
 @Component
 public class AccessInterceptor extends HandlerInterceptorAdapter {
 

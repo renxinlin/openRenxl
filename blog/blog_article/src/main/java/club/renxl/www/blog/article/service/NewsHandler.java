@@ -13,6 +13,7 @@ import club.renxl.www.pageInfo.PageInfo;
 import club.renxl.www.response.BaseResponse;
 
 /**
+ * 
  * 接口同时被rpc和http依赖
  * 新闻
  * 
@@ -32,8 +33,7 @@ public interface NewsHandler {
  	Map<String, Object> lookAll(Artitle Artitle,
  			PageInfo<Artitle> p);
 
-	Artitle lookDetails(Artitle Artitle);
-	
+ 	
 	boolean toggleTopOrUpdateNews(Artitle record);
 	boolean deleteById(Artitle Artitle) ;
 	
@@ -73,6 +73,14 @@ public interface NewsHandler {
 	 * @return
 	 */
 	BaseResponse lookAllWithPage(PageInfo<Artitle> condition);
+	/**
+	 * 详情查看
+	 * @param article
+	 * @return
+	 */
+	BaseResponse lookDetails(Artitle article);
+
+	BaseResponse publish(Artitle article);
 	
 
 }

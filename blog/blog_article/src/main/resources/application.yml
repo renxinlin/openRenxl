@@ -1,12 +1,12 @@
 server:
   port: 8877
-
+  context-path: /article
 eureka:
   client: 
     healthcheck:
       enabled:true
     service-url:
-      defaultZone: http://user:password123@localhost:10020/eureka
+      defaultZone: http://user:password123@www.renxl.club:10020/eureka
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}   
@@ -19,11 +19,11 @@ eureka:
 spring:
   application:
     name: article
-  datasource:
-    url: jdbc:mysql://47.104.88.31:3306/axin20180716
-    username: root
-    password: abcde12345
-    driverClassName: com.mysql.jdbc.Driver
+#  datasource:
+#    url: jdbc:mysql://47.104.88.31:3306/axin20180716?useUnicode=true&amp;characterEncoding=utf-8
+#    username: root
+#    password: abcde12345
+#    driverClassName: com.mysql.jdbc.Driver
 # --------------------------- mysql end ---------------------------
 #
 #
@@ -32,4 +32,20 @@ spring:
 mybatis:
   mapperLocations: classpath*:club.renxl.www.blog.article.mapper/*.xml
   typeAliasesPackage: club.renxl.www.blog.article.domain
+  #pagehelper分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 # --------------------------- mybatis end ---------------------------
+# 暂时配置，后期配置到配置服务器
+images:
+  base:
+    url: http://www.renxl.club/ims/blog/
+    
+    
+    
+multipart:
+  maxFileSize: 10Mb
+  maxRequestSize: 100Mb

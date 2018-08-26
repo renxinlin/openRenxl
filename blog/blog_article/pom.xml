@@ -27,7 +27,22 @@
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.dangdang</groupId>
+			<artifactId>sharding-jdbc-core</artifactId>
+		</dependency>
+		
+		
+		<dependency>
+				<groupId>com.dangdang</groupId>
+				<artifactId>sharding-jdbc-self-id-generator</artifactId>
+ 			</dependency>
+			
+		  <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+        
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>

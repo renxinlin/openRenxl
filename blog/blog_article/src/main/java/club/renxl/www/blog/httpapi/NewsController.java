@@ -16,6 +16,8 @@ import club.renxl.www.response.BaseResponse;
 // ?id=
 // read +》 dont wirte url
 /**
+ * 
+ * 以此controller为例：数据交互全部是json，微服务之间也是；所以定义BaseResponse,不同于dubbo的domain交互
  * 公告 noticeVO的type对应的是noticeDo的top
  * 
  * 
@@ -43,5 +45,26 @@ public class NewsController {
 		return newsHandler.lookAllWithPage(condition);
 
 	}
+	
+	
+	
+	
+	@PostMapping("page-detail")
+
+	public BaseResponse readArticleDetails(@RequestBody Artitle article) {
+
+		return newsHandler.lookDetails(article);
+
+	}
+	
+	
+	@PostMapping("publish")
+	public BaseResponse publishArticle(@RequestBody Artitle article) {
+
+		return newsHandler.publish(article);
+
+	}
+	
+	
 
 }
