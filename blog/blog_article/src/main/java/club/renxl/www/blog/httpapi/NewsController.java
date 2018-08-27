@@ -39,7 +39,6 @@ public class NewsController {
 	 * @return
 	 */
 	@PostMapping("pages")
-
 	public BaseResponse readArticle(@RequestBody PageInfo<Artitle> condition) {
 
 		return newsHandler.lookAllWithPage(condition);

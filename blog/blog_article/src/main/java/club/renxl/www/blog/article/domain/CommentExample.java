@@ -205,53 +205,113 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
+        public Criteria andIdEqualTo(Long value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
+        public Criteria andIdNotEqualTo(Long value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
+        public Criteria andIdGreaterThan(Long value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
+        public Criteria andIdLessThan(Long value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
+        public Criteria andIdLessThanOrEqualTo(Long value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
+        public Criteria andIdIn(List<Long> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
+        public Criteria andIdNotIn(List<Long> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
+        public Criteria andIdBetween(Long value1, Long value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidIsNull() {
+            addCriterion("pid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidIsNotNull() {
+            addCriterion("pid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidEqualTo(Long value) {
+            addCriterion("pid =", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidNotEqualTo(Long value) {
+            addCriterion("pid <>", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidGreaterThan(Long value) {
+            addCriterion("pid >", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidGreaterThanOrEqualTo(Long value) {
+            addCriterion("pid >=", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidLessThan(Long value) {
+            addCriterion("pid <", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidLessThanOrEqualTo(Long value) {
+            addCriterion("pid <=", value, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidIn(List<Long> values) {
+            addCriterion("pid in", values, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidNotIn(List<Long> values) {
+            addCriterion("pid not in", values, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidBetween(Long value1, Long value2) {
+            addCriterion("pid between", value1, value2, "pid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPidNotBetween(Long value1, Long value2) {
+            addCriterion("pid not between", value1, value2, "pid");
             return (Criteria) this;
         }
 
@@ -265,52 +325,52 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdEqualTo(Integer value) {
+        public Criteria andTopicIdEqualTo(Long value) {
             addCriterion("topic_id =", value, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdNotEqualTo(Integer value) {
+        public Criteria andTopicIdNotEqualTo(Long value) {
             addCriterion("topic_id <>", value, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdGreaterThan(Integer value) {
+        public Criteria andTopicIdGreaterThan(Long value) {
             addCriterion("topic_id >", value, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTopicIdGreaterThanOrEqualTo(Long value) {
             addCriterion("topic_id >=", value, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdLessThan(Integer value) {
+        public Criteria andTopicIdLessThan(Long value) {
             addCriterion("topic_id <", value, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdLessThanOrEqualTo(Integer value) {
+        public Criteria andTopicIdLessThanOrEqualTo(Long value) {
             addCriterion("topic_id <=", value, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdIn(List<Integer> values) {
+        public Criteria andTopicIdIn(List<Long> values) {
             addCriterion("topic_id in", values, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdNotIn(List<Integer> values) {
+        public Criteria andTopicIdNotIn(List<Long> values) {
             addCriterion("topic_id not in", values, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdBetween(Integer value1, Integer value2) {
+        public Criteria andTopicIdBetween(Long value1, Long value2) {
             addCriterion("topic_id between", value1, value2, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andTopicIdNotBetween(Long value1, Long value2) {
             addCriterion("topic_id not between", value1, value2, "topicId");
             return (Criteria) this;
         }
@@ -385,52 +445,52 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andFromUidEqualTo(Integer value) {
+        public Criteria andFromUidEqualTo(Long value) {
             addCriterion("from_uid =", value, "fromUid");
             return (Criteria) this;
         }
 
-        public Criteria andFromUidNotEqualTo(Integer value) {
+        public Criteria andFromUidNotEqualTo(Long value) {
             addCriterion("from_uid <>", value, "fromUid");
             return (Criteria) this;
         }
 
-        public Criteria andFromUidGreaterThan(Integer value) {
+        public Criteria andFromUidGreaterThan(Long value) {
             addCriterion("from_uid >", value, "fromUid");
             return (Criteria) this;
         }
 
-        public Criteria andFromUidGreaterThanOrEqualTo(Integer value) {
+        public Criteria andFromUidGreaterThanOrEqualTo(Long value) {
             addCriterion("from_uid >=", value, "fromUid");
             return (Criteria) this;
         }
 
-        public Criteria andFromUidLessThan(Integer value) {
+        public Criteria andFromUidLessThan(Long value) {
             addCriterion("from_uid <", value, "fromUid");
             return (Criteria) this;
         }
 
-        public Criteria andFromUidLessThanOrEqualTo(Integer value) {
+        public Criteria andFromUidLessThanOrEqualTo(Long value) {
             addCriterion("from_uid <=", value, "fromUid");
             return (Criteria) this;
         }
 
-        public Criteria andFromUidIn(List<Integer> values) {
+        public Criteria andFromUidIn(List<Long> values) {
             addCriterion("from_uid in", values, "fromUid");
             return (Criteria) this;
         }
 
-        public Criteria andFromUidNotIn(List<Integer> values) {
+        public Criteria andFromUidNotIn(List<Long> values) {
             addCriterion("from_uid not in", values, "fromUid");
             return (Criteria) this;
         }
 
-        public Criteria andFromUidBetween(Integer value1, Integer value2) {
+        public Criteria andFromUidBetween(Long value1, Long value2) {
             addCriterion("from_uid between", value1, value2, "fromUid");
             return (Criteria) this;
         }
 
-        public Criteria andFromUidNotBetween(Integer value1, Integer value2) {
+        public Criteria andFromUidNotBetween(Long value1, Long value2) {
             addCriterion("from_uid not between", value1, value2, "fromUid");
             return (Criteria) this;
         }
@@ -992,6 +1052,206 @@ public class CommentExample {
 
         public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
             addCriterion("create_time not between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andToUidIsNull() {
+            addCriterion("to_uid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andToUidIsNotNull() {
+            addCriterion("to_uid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andToUidEqualTo(Long value) {
+            addCriterion("to_uid =", value, "toUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andToUidNotEqualTo(Long value) {
+            addCriterion("to_uid <>", value, "toUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andToUidGreaterThan(Long value) {
+            addCriterion("to_uid >", value, "toUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andToUidGreaterThanOrEqualTo(Long value) {
+            addCriterion("to_uid >=", value, "toUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andToUidLessThan(Long value) {
+            addCriterion("to_uid <", value, "toUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andToUidLessThanOrEqualTo(Long value) {
+            addCriterion("to_uid <=", value, "toUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andToUidIn(List<Long> values) {
+            addCriterion("to_uid in", values, "toUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andToUidNotIn(List<Long> values) {
+            addCriterion("to_uid not in", values, "toUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andToUidBetween(Long value1, Long value2) {
+            addCriterion("to_uid between", value1, value2, "toUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andToUidNotBetween(Long value1, Long value2) {
+            addCriterion("to_uid not between", value1, value2, "toUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameIsNull() {
+            addCriterion("to_nickname is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameIsNotNull() {
+            addCriterion("to_nickname is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameEqualTo(String value) {
+            addCriterion("to_nickname =", value, "toNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameNotEqualTo(String value) {
+            addCriterion("to_nickname <>", value, "toNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameGreaterThan(String value) {
+            addCriterion("to_nickname >", value, "toNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameGreaterThanOrEqualTo(String value) {
+            addCriterion("to_nickname >=", value, "toNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameLessThan(String value) {
+            addCriterion("to_nickname <", value, "toNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameLessThanOrEqualTo(String value) {
+            addCriterion("to_nickname <=", value, "toNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameLike(String value) {
+            addCriterion("to_nickname like", value, "toNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameNotLike(String value) {
+            addCriterion("to_nickname not like", value, "toNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameIn(List<String> values) {
+            addCriterion("to_nickname in", values, "toNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameNotIn(List<String> values) {
+            addCriterion("to_nickname not in", values, "toNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameBetween(String value1, String value2) {
+            addCriterion("to_nickname between", value1, value2, "toNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andToNicknameNotBetween(String value1, String value2) {
+            addCriterion("to_nickname not between", value1, value2, "toNickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgIsNull() {
+            addCriterion("to_thumb_img is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgIsNotNull() {
+            addCriterion("to_thumb_img is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgEqualTo(String value) {
+            addCriterion("to_thumb_img =", value, "toThumbImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgNotEqualTo(String value) {
+            addCriterion("to_thumb_img <>", value, "toThumbImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgGreaterThan(String value) {
+            addCriterion("to_thumb_img >", value, "toThumbImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgGreaterThanOrEqualTo(String value) {
+            addCriterion("to_thumb_img >=", value, "toThumbImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgLessThan(String value) {
+            addCriterion("to_thumb_img <", value, "toThumbImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgLessThanOrEqualTo(String value) {
+            addCriterion("to_thumb_img <=", value, "toThumbImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgLike(String value) {
+            addCriterion("to_thumb_img like", value, "toThumbImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgNotLike(String value) {
+            addCriterion("to_thumb_img not like", value, "toThumbImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgIn(List<String> values) {
+            addCriterion("to_thumb_img in", values, "toThumbImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgNotIn(List<String> values) {
+            addCriterion("to_thumb_img not in", values, "toThumbImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgBetween(String value1, String value2) {
+            addCriterion("to_thumb_img between", value1, value2, "toThumbImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andToThumbImgNotBetween(String value1, String value2) {
+            addCriterion("to_thumb_img not between", value1, value2, "toThumbImg");
             return (Criteria) this;
         }
     }

@@ -192,7 +192,7 @@ public class NewsHandlerImpl implements NewsHandler {
 		article.setCreateDate(new Date());
 		article.setUpdateDate(new Date());
 		article.setImage(article.getCoverImg());
-		article.setId((int)(Math.random()*100));
+		article.setId(idGenerator.generateId().longValue());
 		//TODO 待添加
 		return article;
 	}

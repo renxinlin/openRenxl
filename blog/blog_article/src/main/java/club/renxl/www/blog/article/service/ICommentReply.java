@@ -25,7 +25,7 @@ public interface ICommentReply {
     /**
    	 * 评论回复多加载
    	 */
-    BaseResponse lookCommentReply(Integer articleId);
+    BaseResponse lookCommentReply(Comment comment);
     
     /**
      * 发表评论

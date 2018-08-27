@@ -4,22 +4,22 @@ import java.util.Date;
 
 public class Reply {
     /**  */
-    private Integer id;
+    private Long id;
 
     /** 根评论id */
-    private Integer commentId;
+    private Long commentId;
 
     /** 1为回复评论，2为回复别人的回复 */
     private Byte replyType;
 
     /** 回复目标id，reply_type为1时，是comment_id，reply_type为2时为回复表的id */
-    private Integer replyId;
+    private Long replyId;
 
     /** 回复目标id */
-    private Integer toUid;
+    private Long toUid;
 
     /** 回复用户id */
-    private Integer fromUid;
+    private Long fromUid;
 
     /** 回复者的头像 */
     private String fromThumbImg;
@@ -47,7 +47,7 @@ public class Reply {
      *
      * @mbggenerated
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -59,7 +59,7 @@ public class Reply {
      *
      * @mbggenerated
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -71,7 +71,7 @@ public class Reply {
      *
      * @mbggenerated
      */
-    public Integer getCommentId() {
+    public Long getCommentId() {
         return commentId;
     }
 
@@ -83,7 +83,7 @@ public class Reply {
      *
      * @mbggenerated
      */
-    public void setCommentId(Integer commentId) {
+    public void setCommentId(Long commentId) {
         this.commentId = commentId;
     }
 
@@ -119,7 +119,7 @@ public class Reply {
      *
      * @mbggenerated
      */
-    public Integer getReplyId() {
+    public Long getReplyId() {
         return replyId;
     }
 
@@ -131,7 +131,7 @@ public class Reply {
      *
      * @mbggenerated
      */
-    public void setReplyId(Integer replyId) {
+    public void setReplyId(Long replyId) {
         this.replyId = replyId;
     }
 
@@ -143,7 +143,7 @@ public class Reply {
      *
      * @mbggenerated
      */
-    public Integer getToUid() {
+    public Long getToUid() {
         return toUid;
     }
 
@@ -155,7 +155,7 @@ public class Reply {
      *
      * @mbggenerated
      */
-    public void setToUid(Integer toUid) {
+    public void setToUid(Long toUid) {
         this.toUid = toUid;
     }
 
@@ -167,7 +167,7 @@ public class Reply {
      *
      * @mbggenerated
      */
-    public Integer getFromUid() {
+    public Long getFromUid() {
         return fromUid;
     }
 
@@ -179,7 +179,7 @@ public class Reply {
      *
      * @mbggenerated
      */
-    public void setFromUid(Integer fromUid) {
+    public void setFromUid(Long fromUid) {
         this.fromUid = fromUid;
     }
 

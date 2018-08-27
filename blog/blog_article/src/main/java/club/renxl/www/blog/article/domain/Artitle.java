@@ -4,105 +4,105 @@ import java.util.Date;
 
 public class Artitle {
     /**  */
-    private Integer id;
+    private Long id;
 
-    /** ??ï¿½ï¿½?????ï¿½C??ï¿½ï¿½ */
+    /** ·¢²¼±àºÅ */
     private String code;
 
-    /** ?ï¿½ï¿½??ï¿½ï¿½????ï¿½ï¿½?? */
+    /** ¹«¸æ±êÌâ */
     private String title;
 
-    /** ?ï¿½ï¿½????ï¿½ï¿½?? */
+    /** ¸±±êÌâ */
     private String subheading;
 
-    /** ?ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½ */
+    /** ¹Ø¼ü×Ö */
     private String keywords;
 
-    /** ???ï¿½ï¿½??????ï¿½ï¿½?ï¿½ï¿½?? */
+    /** Ö÷Ìâ£¬ÕªÒª */
     private String theme;
 
-    /** ???ï¿½ï¿½ï¿½ã¡­id */
-    private Integer authorId;
+    /** ×÷Õßid */
+    private Long authorId;
 
-    /** ???ï¿½ï¿½ï¿½ã¡­????ï¿½ï¿½ï¿½ */
+    /** ×÷ÕßÃû³Æ */
     private String authorName;
 
-    /** ????ï¿½ï¿½???ï¿½ï¿½??ï¿½ï¿½ */
+    /** Í¼Æ¬µØÖ· */
     private String image;
 
-    /** ????ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½????ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½????ï¿½ï¿½??ï¿½ï¿½ */
+    /** Í¼Æ¬Á´½ÓÌø×ªµØÖ·|·âÃæÍ¼Æ¬ */
     private String coverImg;
 
-    /** ï¿½ï¿½??ï¿½ï¿½???ï¿½ï¿½???ï¿½ï¿½,???????ï¿½ï¿½ï¿½ï¿½??ï¿½ï¿½ */
+    /** ÆÀÂÛ×ÜÊý,ÔÝÎ´ÓÃµ½ */
     private Integer commentNum;
 
-    /** ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½??ï¿½ï¿½?? */
+    /** ÔÄ¶ÁÁ¿ */
     private Integer readNum;
 
-    /** ???ï¿½ï¿½???ï¿½ï¿½?ï¿½ï¿½?? */
+    /** µãÔÞ×ÜÁ¿ */
     private Integer zanNum;
 
-    /** ???????ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½? */
+    /** ´´½¨Ê±¼ä */
     private Date createDate;
 
-    /** ??ï¿½ï¿½???????ï¿½Cï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½? */
+    /** ×îºó¸üÐÂÊ±¼ä */
     private Date updateDate;
 
-    /** ??ï¿½ï¿½?????ï¿½ï¿½?ï¿½ï¿½???ï¿½ï¿½??????0ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½???ï¿½ï¿½??? */
+    /** ·¢²»µ½Ñ²¼ìµ¥Î»0±íÊ¾·¢²¼ */
     private String toPatrol;
 
-    /** ??ï¿½ï¿½?????ï¿½ï¿½????????? */
+    /** ·¢²¼µ½Î¬±£¶Ë */
     private String toMaintain;
 
-    /** ??ï¿½ï¿½?????ï¿½ï¿½?ï¿½ï¿½??????? */
+    /** ·¢²¼µ½ÎïÒµ¶Ë */
     private String toUsing;
 
-    /** ??ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½?????????ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½??????ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½????json */
+    /** ÍÆ¼öÄ£°å£¬ÍøÒ³Éú³ÉÍÆ¼öÄ£°åjson */
     private String recommendTemplate;
 
-    /** ??ï¿½ï¿½ï¿½ï¿½????ï¿½ï¿½?????????ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½??????????ï¿½ï¿½?ï¿½ï¿½????ï¿½ï¿½??????ï¿½ï¿½ï¿½ï¿½??????ï¿½C?json */
+    /** ÍÆ¼öÄÚÈÝ£¬»Øµ÷ÍÆ¼öÄ£°å×÷Îª±íµ¥Éú³ÉÍÆ¼öÕýÎÄjson */
     private String recommendContent;
 
-    /** ï¿½ï¿½??ï¿½ï¿½????ï¿½ï¿½??? */
+    /** Ò³½ÅÄÚÈÝ */
     private String footerContent;
 
-    /** ???ï¿½ï¿½???????????1?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½???2?ï¿½ï¿½???ï¿½ï¿½???3?????????4?ï¿½ï¿½???? */
+    /** ÖÃ¶¥µ¥Î»£º1È«²¿£¬2Ñ²¼ì£¬3Î¬±££¬4ÎïÒµ */
     private String top;
 
-    /** ?????????ï¿½ï¿½?ï¿½ï¿½ */
+    /** ÊÇ·ñÉ¾³ý */
     private String del;
 
-    /** ?ï¿½ï¿½???ï¿½ï¿½??ï¿½ï¿½??? */
+    /** ±¸×¢×Ö¶Î */
     private String field1;
 
-    /** ?ï¿½ï¿½???ï¿½ï¿½??ï¿½ï¿½??? */
+    /** ±¸×¢×Ö¶Î */
     private String field2;
 
-    /** ?ï¿½ï¿½???ï¿½ï¿½??ï¿½ï¿½??? */
+    /** ±¸×¢×Ö¶Î */
     private String field3;
 
-    /** ?ï¿½ï¿½???ï¿½ï¿½??ï¿½ï¿½??? */
+    /** ±¸×¢×Ö¶Î */
     private String field4;
 
-    /** ?ï¿½ï¿½???ï¿½ï¿½??ï¿½ï¿½??? */
+    /** ±¸×¢×Ö¶Î */
     private String field5;
 
-    /** ?ï¿½ï¿½???ï¿½ï¿½??ï¿½ï¿½??? */
+    /** ±¸×¢×Ö¶Î£ºÔÝ¶¨ÎªÉóºË£¬µ±Ç°²»ÓÃ */
     private Integer field6;
 
-    /** ?ï¿½ï¿½???ï¿½ï¿½??ï¿½ï¿½???:??ï¿½ï¿½?????ï¿½ï¿½??? */
+    /** ±¸×¢×Ö¶Î:ÅÅÐò×Ö¶Î */
     private Integer field7;
 
-    /** ??????????ï¿½ï¿½ï¿½ */
+    /** ±êÇ©Ãû³Æ */
     private String label;
 
-    /** ?ï¿½ï¿½????????ï¿½ï¿½ï¿½ */
+    /** Àà±ðÃû³Æ */
     private String type;
 
-    /** ?ï¿½ï¿½????id */
+    /** Àà±ðid */
     private Integer typeId;
 
-    /** ?ï¿½ï¿½??ï¿½ï¿½?????ï¿½C? */
+    /** ¹«¸æÕýÎÄ */
     private String bodys;
 
     /**
@@ -113,7 +113,7 @@ public class Artitle {
      *
      * @mbggenerated
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -125,7 +125,7 @@ public class Artitle {
      *
      * @mbggenerated
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -257,7 +257,7 @@ public class Artitle {
      *
      * @mbggenerated
      */
-    public Integer getAuthorId() {
+    public Long getAuthorId() {
         return authorId;
     }
 
@@ -269,7 +269,7 @@ public class Artitle {
      *
      * @mbggenerated
      */
-    public void setAuthorId(Integer authorId) {
+    public void setAuthorId(Long authorId) {
         this.authorId = authorId;
     }
 
