@@ -1,34 +1,48 @@
 package club.renxl.www.blog.article.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.dangdang.ddframe.rdb.sharding.id.generator.IdGenerator;
+
+import club.renxl.www.blog.article.dao.ArtitleMapper;
 import club.renxl.www.blog.article.dao.CommentMapper;
-import club.renxl.www.blog.article.dao.ReplyMapper;
+import club.renxl.www.blog.article.domain.Artitle;
+import club.renxl.www.blog.article.domain.ArtitleExample;
+import club.renxl.www.blog.article.domain.ArtitleExample.Criteria;
 import club.renxl.www.blog.article.domain.Comment;
-import club.renxl.www.blog.article.domain.Reply;
 import club.renxl.www.blog.article.service.ICommentReply;
 import club.renxl.www.response.BaseResponse;
 
 @Service
 public class ICommentReplyImpl implements ICommentReply {
-	private static final Logger logger = LoggerFactory.getLogger(ICommentReplyImpl.class);
+	// private static final Logger logger = LoggerFactory.getLogger(ICommentReplyImpl.class);
 	private static final int FIRSTINDEX = 0;
-	@Autowired
-	private ReplyMapper replyMapper;
+	/**
+	 * 回复
+	 */
+	private static final Byte isReply = (byte)1;
+	/**
+	 * 评论
+	 */
+	private static final Byte isNotReply = (byte)0; 
+	
+	
 	@Autowired
 	private CommentMapper commentMapper;
 	
 	
+	@Autowired
+	private  ArtitleMapper artitleMapper;
+	
+	
+	@Autowired
+	private  IdGenerator idGenerator;
 	@Override
 	public BaseResponse lookCommentAsync(Integer articleId) {
 		// TODO Auto-generated method stub
@@ -49,11 +63,36 @@ public class ICommentReplyImpl implements ICommentReply {
 		if(!legal) {
 			return BaseResponse					 .argsError("参数不合法...");
 		}
+		//TODO 采用自定义函数查询父子结构，则表的路由出错问题
+		// comment = addOtherFieldsByBiz(comment);
+		// 这是一颗待排序的树，sql取出的数据并无规则，只是按照发布时间排序
 		List<Comment>comments = commentMapper.getCommentByArticleId(comment);
  		List<Comment> tree       		 = getTreeMapBySortComment(comments);
 		return BaseResponse .success(tree);
 	}
+	private boolean validateParamsIsLegal(Comment comment) {
+		if(comment == null) {
+			return false;
+
+		}
+		
+		if(comment.getTopicId() == null) {
+			return false;
+
+		}
 	
+		return true;
+	}
+	/**
+	 * 组装业务属性
+	 * @param comment
+	 * @return
+	 */
+	@SuppressWarnings("unused")
+	private Comment addOtherFieldsByBiz(Comment comment) {
+		comment.setId(comment.getTopicId());
+		return comment;
+	}
 	/**
 	 * 获取树结构
 	 * @param comments
@@ -63,13 +102,12 @@ public class ICommentReplyImpl implements ICommentReply {
 		if(comments == null || comments.isEmpty()) {
 			return new LinkedList<Comment>();
 		}
-		Long rootId = comments.get(FIRSTINDEX).getPid();
-		List<Comment> rootTree = new LinkedList<Comment>();
+ 		List<Comment> rootTree = new LinkedList<Comment>();
 		// 获取所有根节点
 		List<Comment> newDatas = new LinkedList<Comment>();
 
 		for(Comment comment : comments) {
-			if(comment.getPid().longValue() ==  rootId.longValue()) {
+			if(comment.getPid() == null) {
 				rootTree.add(comment);
 			}else {
 				newDatas.add(comment);
@@ -79,10 +117,7 @@ public class ICommentReplyImpl implements ICommentReply {
 		  
 		return rootTree;
 	}
-	private boolean validateParamsIsLegal(Comment comment) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 	@Override
 	public BaseResponse publishComment(Comment comment) {
 		// 校验
@@ -91,43 +126,45 @@ public class ICommentReplyImpl implements ICommentReply {
 		if(!legal) {
 			return BaseResponse.argsError("参数不全...");
 		}
+		
+		boolean exist = isArticleExists(comment);
+		if(!exist) {
+			return BaseResponse.argsError("文章不存在...");
+		}
+		if(comment.getPid() !=null){
+			Comment fatherComments = commentMapper.selectByPrimaryKey(comment.getPid());
+			if(StringUtils.isEmpty(fatherComments)){
+				return BaseResponse.argsError("回复失败...");
+			}
+		}
+		
+		
+		
 		// 业务参数补充
 		comment 		   = addOtherFieldByBiz(comment);
 
 		// 发布评论
-		commentMapper                   .insert(comment);
+		commentMapper                   .insertSelective(comment);
 		return BaseResponse		 .success("评论成功...");  
 	}
-	
-	
-	@Override
-	public BaseResponse publishReply(Reply reply) {
-		logger			  .info("json ==>publishReply");
-
-		// 校验
-		boolean legal 		  	  = validateReply(reply);
-		if(!legal) {
-			return BaseResponse.argsError("参数不全...");
-		}
-		// 业务参数补充
-		reply 				 = addOtherFieldByBiz(reply);
-
-		// 发布评论
-		replyMapper                   	  .insert(reply);
-		return BaseResponse		 .success("回复成功...");  
-	}
-	
-	
-
-	@Override
-	public BaseResponse deleteReply(Reply reply) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
+	 
 	/**
-	 * 发布评论的校验
+	 * 校验文章是否存在
+	 * @param comment 传入topicId
+	 * @return
+	 */
+	private boolean isArticleExists(Comment comment) {
+		ArtitleExample example = new ArtitleExample();
+		Criteria createCriteria = example.createCriteria();
+		createCriteria.andIdEqualTo(comment.getTopicId());
+		List<Artitle> existData = artitleMapper.selectByExample(example );
+		if(existData != null && !existData.isEmpty()) {
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * 发布评论的校验,为回复时需要携带pid
 	 * @param comment
 	 * @return
 	 */
@@ -135,12 +172,10 @@ public class ICommentReplyImpl implements ICommentReply {
 		if(StringUtils.isEmpty(comment) 
 				|| StringUtils.isEmpty(comment.getTopicId())
 				|| StringUtils.isEmpty(comment.getContent())
-				|| StringUtils.isEmpty(comment.getIsReply())
-				) {
+				)  {
 			return false;
 
 		}
-		
 		return true;
 	}
 	
@@ -150,36 +185,19 @@ public class ICommentReplyImpl implements ICommentReply {
 	 * @return
 	 */
 	private Comment addOtherFieldByBiz(Comment comment) {
-		 
-		return comment;
-	}
-	
-	/**
-	 * 发布回复的校验
-	 * @param reply
-	 * @return
-	 */
-	private boolean validateReply(Reply reply) {
-		if(StringUtils.isEmpty(reply)
-				|| StringUtils.isEmpty(reply.getCommentId())
-				||StringUtils.isEmpty(reply.getReplyType())
-				||StringUtils.isEmpty(reply.getReplyId())
-				||StringUtils.isEmpty(reply.getContent())){
-			return false;
+		comment.setId(idGenerator.generateId().longValue());
+		comment.setCreateTime(new Date());
+		if(comment.getPid() == null) {
+			// 评论
+			comment.setIsReply(isReply);
+		}else {
+			// 回复
+			comment.setIsReply(isNotReply);
 
 		}
-		
-		return true;
+		return comment;
 	}
-	/**
-	 * 发布回复的业务参数补充
-	 * @param reply
-	 * @return
-	 */
-	private Reply addOtherFieldByBiz(Reply reply) {
-		return reply;
-	}
-	
+	 
 	/////////////////////////////////////////////////递归开始///////////////////////////////////////////////////////////
 	
 	/**

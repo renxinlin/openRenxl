@@ -18,7 +18,7 @@ import java.util.LinkedHashSet;
 //      %2  表个数
 //      001  110 001       表      //除数 /表个数为数据表的地址
 //除的整数除以表个数=表地址
-public final class ModuloTableShardingAlgorithm implements SingleKeyTableShardingAlgorithm<Long> {
+public final class CommentModuloTableShardingAlgorithm implements SingleKeyTableShardingAlgorithm<Long> {
 
     /**
      *  select * from t_order from t_order where order_id = 11
@@ -30,13 +30,14 @@ public final class ModuloTableShardingAlgorithm implements SingleKeyTableShardin
         for (String each : tableNames) {
         	// 1，2 ==》1，3 5 7 9
             if (each.endsWith((shardingValue.getValue() / 2)%2 + "")) {
-                return each;
+                 return each;
             }
         }
         throw new IllegalArgumentException();
     }
     public static void main(String[] args) {
-		System.out.println(0	%2);
+		System.out.println("0".endsWith((1L/ 2)%2 + ""));
+		System.out.println((1 / 2)%2 + "");
 	}
 
     /**

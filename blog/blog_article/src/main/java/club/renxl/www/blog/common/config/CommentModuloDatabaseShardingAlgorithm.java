@@ -11,7 +11,7 @@ import com.google.common.collect.Range;
 // 2,4,6,8,10 y =2+2(n-1)           偶数2库，n偶数2表
 // 3个库 123，456，789   数字/数据库个数= 路由地址（余数）
 // 除的整数除以表个数=表地址
-public class ModuloDatabaseShardingAlgorithm implements SingleKeyDatabaseShardingAlgorithm<Long> {
+public class CommentModuloDatabaseShardingAlgorithm implements SingleKeyDatabaseShardingAlgorithm<Long> {
 
     @Override
     public String doEqualSharding(Collection<String> availableTargetNames, ShardingValue<Long> shardingValue) {

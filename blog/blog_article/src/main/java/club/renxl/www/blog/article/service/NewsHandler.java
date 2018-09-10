@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
- 
 import club.renxl.www.blog.article.domain.Artitle;
 import club.renxl.www.blog.article.domain.ArtitleExample;
 import club.renxl.www.pageInfo.PageInfo;
@@ -80,7 +79,7 @@ public interface NewsHandler {
 	 */
 	BaseResponse lookDetails(Artitle article);
 
-	BaseResponse publish(Artitle article);
+	BaseResponse publish(Artitle article) ;
 	
 
 }

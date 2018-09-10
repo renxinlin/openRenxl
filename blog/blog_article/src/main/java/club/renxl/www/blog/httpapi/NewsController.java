@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import club.renxl.www.blog.article.domain.Artitle;
+import club.renxl.www.blog.article.domain.ArtitleVO;
 import club.renxl.www.blog.article.service.NewsHandler;
 import club.renxl.www.pageInfo.PageInfo;
 import club.renxl.www.response.BaseResponse;
@@ -40,23 +41,33 @@ public class NewsController {
 	 */
 	@PostMapping("pages")
 	public BaseResponse readArticle(@RequestBody PageInfo<Artitle> condition) {
-
+		log.debug("json log");
 		return newsHandler.lookAllWithPage(condition);
 
 	}
 	
 	
-	
+	/**
+	 * 关于long类型出错问题，jackson在git上的议题暂时无法解决该问题
+	 * 每个实体类写一个类型转换太过复杂，采用网页实体和传输层实体转化的方式解决该问题
+	 * @param articleVo
+	 * @return
+	 */
 	
 	@PostMapping("page-detail")
-
-	public BaseResponse readArticleDetails(@RequestBody Artitle article) {
-
+	public BaseResponse readArticleDetails(@RequestBody ArtitleVO articleVo) {
+		Artitle article = new Artitle();
+		article.setId(Long.parseLong(articleVo.getId()));
 		return newsHandler.lookDetails(article);
 
 	}
 	
-	
+	/**
+	 *  <p>  发布业务:发布时，向评论表插入一条逻辑评论，做为所有评论的根评论;在评论查找时候，获取这条逻辑评论下的所有子孙评论</p>
+	 *  </p> 其中根评论的topicId和id同发布文章的id;pid为null</p>
+	 * @param article
+	 * @return
+	 */
 	@PostMapping("publish")
 	public BaseResponse publishArticle(@RequestBody Artitle article) {
 

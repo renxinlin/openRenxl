@@ -7,4 +7,4 @@ spring:
         git:
           uri: https://github.com/renxinlin/config#（也可以是不同仓库的名称，这样隔离性强，项目之间不可见）
   application:
-    name: my1
+    name: config-server

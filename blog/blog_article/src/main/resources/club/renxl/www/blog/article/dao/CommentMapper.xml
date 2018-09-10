@@ -121,9 +121,12 @@
   <!-- 自定义sql start -->
   <!--  目前评论主题id和文章的id相同的数据会被路由到同一个库 -->
   <!-- pid为null的是每个文章的逻辑根评论 默认根评的id和topicid相同 -->
-  <select id="getCommentByArticleId">
-  	select <include refid="Base_Column_List" />
-  	from axin_blogs_comment where 1=1 and topic_id = #{topicId}  and pid is not null and  FIND_IN_SET(id,getParLst(#{topicId})) ORDER BY pid,create_time
+  <!--  and  FIND_IN_SET(id,getParLst(#{topicId})) 不可以用topicID 否则会导致路由问题 -->
+  <!-- 用id装载topicID的数据来解决路由问题 -->
+  <select id="getCommentByArticleId" parameterType="club.renxl.www.blog.article.domain.Comment" resultMap="ResultMapWithBLOBs">
+  	select <include refid="Base_Column_List" />, 
+    <include refid="Blob_Column_List" />
+  	from axin_blogs_comment where 1=1     and   topic_id = #{topicId} ORDER BY create_time
 
   </select>
   

@@ -65,7 +65,14 @@ public class Comment {
     
     
     
-    public List<Comment> getChildren() {
+    public Comment() {
+ 	}
+
+	public Comment(Long topicId) {
+		 this.topicId = topicId;
+	}
+
+	public List<Comment> getChildren() {
 		return children;
 	}
 

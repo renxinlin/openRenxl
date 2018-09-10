@@ -16,8 +16,6 @@ import com.dangdang.ddframe.rdb.sharding.api.rule.ShardingRule;
 import com.dangdang.ddframe.rdb.sharding.api.rule.TableRule;
 import com.dangdang.ddframe.rdb.sharding.api.strategy.database.DatabaseShardingStrategy;
 import com.dangdang.ddframe.rdb.sharding.api.strategy.table.TableShardingStrategy;
-import com.dangdang.ddframe.rdb.sharding.id.generator.IdGenerator;
-import com.dangdang.ddframe.rdb.sharding.id.generator.self.CommonSelfIdGenerator;
 import com.mysql.jdbc.Driver;
 
 @Configuration
@@ -27,11 +25,19 @@ public class DataSourceConfig {
 	 * 64主键
 	 * @return
 	 */
-	@Bean
+	/*@Bean
+	@Scope("singleton")//每次调用新建一个bean示例
     public IdGenerator getIdGenerator() {
-        return new CommonSelfIdGenerator();
-    }
-	
+        return new IdWorker (0,0);
+    }*/
+	public static void main(String[] args) {
+		IdWorker idWorker = new IdWorker (0,0);
+		int i = 0;
+		while(i<100) {
+			i++;
+			System.out.println(idWorker.generateId().longValue());
+		}
+	}
     @Bean
     public DataSource getDataSource() {
         return buildDataSource();
@@ -50,13 +56,18 @@ public class DataSourceConfig {
 
         //设置分表映射，将t_order_0和t_order_1两个实际的表映射到t_order逻辑表
         //0和1两个表是真实的表，t_order是个虚拟不存在的表，只是供使用。如查询所有数据就是select * from t_order就能查完0和1表的
+        // 文章维度
         TableRule orderTableRule = TableRule.builder("axin_blogs_artitle")
                 .actualTables(Arrays.asList("axin_blogs_artitle_0", "axin_blogs_artitle_1"))
+                .databaseShardingStrategy(new DatabaseShardingStrategy("id", new ModuloDatabaseShardingAlgorithm()))
+                .tableShardingStrategy(new TableShardingStrategy("id", new ModuloTableShardingAlgorithm())) 
                 .dataSourceRule(dataSourceRule)
                 .build();
-        
+        // 评论维度
         TableRule orderTableRule1 = TableRule.builder("axin_blogs_comment")
                 .actualTables(Arrays.asList("axin_blogs_comment_0", "axin_blogs_comment_1"))
+                .databaseShardingStrategy(new DatabaseShardingStrategy("topic_id", new CommentModuloDatabaseShardingAlgorithm()))
+                .tableShardingStrategy(new TableShardingStrategy("topic_id", new CommentModuloTableShardingAlgorithm()))
                 .dataSourceRule(dataSourceRule)
                 .build();
          
@@ -64,15 +75,14 @@ public class DataSourceConfig {
         //具体分库分表策略，按什么规则来分
         ShardingRule shardingRule = ShardingRule.builder()
                 .dataSourceRule(dataSourceRule)
-                .tableRules(Arrays.asList(orderTableRule))
-                  .databaseShardingStrategy(new DatabaseShardingStrategy("id", new ModuloDatabaseShardingAlgorithm()))
-                .tableShardingStrategy(new TableShardingStrategy("id", new ModuloTableShardingAlgorithm())).build();
+                .tableRules(Arrays.asList(orderTableRule, orderTableRule1)).build();
 
         DataSource dataSource = ShardingDataSourceFactory.createDataSource(shardingRule);
 
         return dataSource;
     }
 
+    
     private static DataSource createDataSource(final String dataSourceName) {
         //使用druid连接数据库
         DruidDataSource result = new DruidDataSource();
