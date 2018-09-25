@@ -24,7 +24,6 @@ public class ArticleCommentsApplication {
 	// 消费者一律采用声明式rest feign
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(ArticleCommentsApplication.class).web(true).run(args);
-
 	}
 
 }

@@ -11,18 +11,29 @@ import com.netflix.ribbon.proxy.annotation.Hystrix;
 
 import club.renxl.www.blog.article.domain.Artitle;
 import club.renxl.www.blog.article.service.IWelcome;
+import club.renxl.www.blog.feign.LoginFeignClient;
+import club.renxl.www.login.util.User;
 import club.renxl.www.response.BaseResponse;
 
 @RestController
 @RequestMapping("welcome")
 public class WelcomeController {
 	// 配置服务器搭建完成，测试ok
-	// @Value("${m}") // 暂时不启动配置服务器太麻烦
-	private String m="S";
+	private String m;
 	@Autowired
 	private IWelcome iWelcome;
+	
+	
+	@Value("${sso.login.web.url}")
+	private String ssoLoginUrl;
+	
+	@Autowired
+	private  LoginFeignClient loginFeign;
+	
 	@RequestMapping("hi")
 	public BaseResponse wel() {
+		User user = null;
+		loginFeign.isOnline(user );
 		return BaseResponse.success(m);
 		
 	}

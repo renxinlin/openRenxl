@@ -15,6 +15,17 @@ eureka:
 
 # 个人对eureka租期续约的理解，客户端定期注册，服务端定期扫描，客户端还有一个注册失败的清除时间
 
+
+feign:
+  hystrix:
+    enabled: true # 默认启用
+#  client:
+#    default:
+#      #这里时间一定要调长，否则feign客户端会报ReadTimeOut  服务端报Error parsing HTTP request header
+#      connectTimeout: 60000
+#      readTimeout: 60000
+#      loggerLevel: basic
+
 # --------------------------- mysql start -------------------------
 spring:
   application:
@@ -49,3 +60,5 @@ images:
 multipart:
   maxFileSize: 10Mb
   maxRequestSize: 100Mb
+  
+  
