@@ -1,0 +1,19 @@
+# 集群2 
+security:
+  basic:
+    enabled: true
+  user:
+    name: user
+    password: password123
+server:
+  port: 9001
+
+spring:
+  application:
+    name: eurekaServer
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@localhost:9002/eureka
+

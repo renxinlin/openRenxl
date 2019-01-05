@@ -6,19 +6,27 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- *   文章管理发布 == > 演进方向，加视频 评论 图片 文章类别（社交方向）
- *   @port 8990
+ * 文章管理发布 == > 演进方向，加视频 评论 图片 文章类别（社交方向）
+ * @port 8990
  * @author renxl
  *
  */
 @SpringBootApplication
-@EnableEurekaClient // 每一个微服务都是一个eureka客户端
+@EnableEurekaClient // 每一个微服务都是一个eureka客户端,该注解表明会拉取服务端信息，无该注解只注册不拉取信息
 @EnableFeignClients
-@EnableCircuitBreaker
 @MapperScan("club.renxl.www.blog.article.dao")
+@EnableScheduling
+@EnableCircuitBreaker// or @EnableHystrix
+@EnableHystrixDashboard
+@EnableZuulProxy 
 public class ArticleApplication {
+	
 	
 	/**
 	 * 文章基础提供者

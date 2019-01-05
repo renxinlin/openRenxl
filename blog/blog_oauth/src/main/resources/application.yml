@@ -1,0 +1,11 @@
+# 授权服务
+
+spring:
+  application:
+    name: server-oauth
+server:
+  port: 9999
+  
+  
+  
+  

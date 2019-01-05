@@ -1,17 +1,19 @@
 server:
-  port: 8877
+  port: 8891
   context-path: /article
 eureka:
-  client: 
+  client:
     healthcheck:
       enabled:true
     service-url:
-      defaultZone: http://user:password123@www.renxl.club:10020/eureka
+#      defaultZone: http://user:password123@www.renxl.club:10020/eureka
+      defaultZone: http://user:password123@localhost:9001/eureka
+    registry-fetch-interval-seconds: 30 # 客户端更新服务端注册表时间间隔
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}   
-    lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
-    lease-expiration-duration-in-seconds: 10  # 发呆时间，即服务续约到期时间（缺省为90s）
+    lease-renewal-interval-in-seconds: 5      # 定义服务续约任务（心跳）的调用间隔（缺省为30s）
+    lease-expiration-duration-in-seconds: 10  # 定义服务失效的时间Eureka服务器在接收到实例的最后一次发出的心跳后，需要等待多久才可以将此实例删除（缺省为90s）
 
 # 个人对eureka租期续约的理解，客户端定期注册，服务端定期扫描，客户端还有一个注册失败的清除时间
 
@@ -27,14 +29,7 @@ feign:
 #      loggerLevel: basic
 
 # --------------------------- mysql start -------------------------
-spring:
-  application:
-    name: article
-#  datasource:
-#    url: jdbc:mysql://47.104.88.31:3306/axin20180716?useUnicode=true&amp;characterEncoding=utf-8
-#    username: root
-#    password: abcde12345
-#    driverClassName: com.mysql.jdbc.Driver
+
 # --------------------------- mysql end ---------------------------
 #
 #
@@ -51,9 +46,9 @@ pagehelper:
   params: count=countSql
 # --------------------------- mybatis end ---------------------------
 # 暂时配置，后期配置到配置服务器
-images:
-  base:
-    url: http://www.renxl.club/ims/blog/
+#images:
+#  base:
+#    url: http://www.renxl.club/ims/blog/
     
     
     
@@ -62,3 +57,40 @@ multipart:
   maxRequestSize: 100Mb
   
   
+  
+# ------------------------------------------redis----------------------------------
+
+spring:
+  application:
+    name: articleb1
+#  datasource:
+#    url: jdbc:mysql://47.104.88.31:3306/axin20180716?useUnicode=true&amp;characterEncoding=utf-8
+#    username: root
+#    password: abcde12345
+#    driverClassName: com.mysql.jdbc.Driver
+
+  
+  redis:
+     host: www.renxl.club
+#端口号  
+     port: 6379
+#如果有密码  
+     password: renxl
+#客户端超时时间单位是毫秒 默认是2000 
+     timeout: 10000  
+
+#最大空闲数  
+     maxIdle: 300  
+#连接池的最大数据库连接数。设为0表示无限制,如果是jedis 2.4以后用redis.maxTotal  
+     maxActive: 600  
+     
+  activemq:
+    user: admin
+    password: admin
+    broker-url: tcp://www.renxl.club:61616
+    pool:
+      enabled: true
+      max-connections: 10
+    timeOut: 5000
+
+#-------------------------------------------redis----------------------------------

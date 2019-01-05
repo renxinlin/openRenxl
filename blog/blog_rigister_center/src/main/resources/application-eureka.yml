@@ -1,0 +1,26 @@
+security:
+  basic:
+    enabled: true
+  user:
+    name: user
+    password: password123
+server:
+  port: 10020
+eureka:
+  server:
+    enable-self-preservation: false # 关闭紧急模式
+    eviction-interval-timer-in-ms: 5000       # 续期时间，即扫描失效服务的间隔时间（缺省为60*1000ms）(除了服务实例主动注销注册外，eureka如何剔除过期的实例呢。)
+    
+  client:
+    register-with-eureka: false # 实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
+    fetch-registry: false # 此客户端是否获取eureka服务器注册表上的注册信息，默认为true
+    service-url:
+      defaultZone: http://user:password123@localhost:10020/eureka# 默认的服务注册地址（这里写不写一样）
+ 
+      
+#      feign整合断路器默认的超时时间是1秒 可以设置feign的超时时间在一个合理值
+
+# 当添加安全模块，默认eureka会生成一个user，日志打印其密码
+
+ 
+    

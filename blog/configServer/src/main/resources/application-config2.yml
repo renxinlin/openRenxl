@@ -1,0 +1,25 @@
+server:
+  port: 10032
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/renxinlin/config #（也可以是不同仓库的名称，这样隔离性强，项目之间不可见）
+  application:
+    name: config-server
+    
+    
+    
+# 高可用需要借助eureka实现;只需要添加eureka即可
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:password123@localhost:9001/eureka
+    registry-fetch-interval-seconds: 30 
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}   
+    

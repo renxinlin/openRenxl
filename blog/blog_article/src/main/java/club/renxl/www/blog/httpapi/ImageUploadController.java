@@ -22,7 +22,8 @@ import club.renxl.www.response.BaseResponse;
 public class ImageUploadController {
 	@Value("${images.base.url}")
 	private String BASEURL ;
-
+	
+	
 	@RequestMapping("uploadBatch")
 	public BaseResponse uploadBatch(@RequestParam("files")MultipartFile[] files){
 		try {

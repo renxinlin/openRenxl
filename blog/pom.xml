@@ -19,6 +19,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<eureka.version>1.4.2.RELEASE</eureka.version>
+		<sprinboot.version>1.5.2.RELEASE</sprinboot.version>
+
 		<jdbc.mysql.version>5.1.33</jdbc.mysql.version>
 		<mybatis.springboot.version>1.3.2</mybatis.springboot.version>
 		<sharding-jdbc-version>1.4.2</sharding-jdbc-version>
@@ -26,8 +28,14 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- springboot单元测试 -->
 
-
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<scope>test</scope>
+				<version>${sprinboot.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
@@ -96,6 +104,31 @@
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-zuul</artifactId>
+				<version>${eureka.version}</version>
+
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-turbine</artifactId>
+				<version>${eureka.version}</version>
+
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-actuator</artifactId>
+				<version>${eureka.version}</version>
+
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
+				<version>${eureka.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-eureka</artifactId>
 				<version>${eureka.version}</version>
 			</dependency>
@@ -105,6 +138,14 @@
 				<version>${eureka.version}</version>
 
 			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-ribbon</artifactId>
+				<version>${eureka.version}</version>
+
+			</dependency>
+
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-eureka-server</artifactId>
@@ -165,5 +206,9 @@
 		<module>blog_article</module>
 		<module>blog_article_commets_feign</module>
 		<module>configServer</module>
+		<module>blog_sleuth</module>
+		<module>blog_oauth</module>
+		<module>blog_turbine</module>
+		<module>blog_hystrixwithdashboard</module>
 	</modules>
 </project>

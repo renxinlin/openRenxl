@@ -8,3 +8,37 @@ spring:
           uri: https://github.com/renxinlin/config #（也可以是不同仓库的名称，这样隔离性强，项目之间不可见）
   application:
     name: config-server
+    
+    
+#    本地配置
+#    当前目录下新建一个shared文件夹，配置xxx-test.yml
+#    config客户端的spring.application.name[-]spring.profiles.active=xxx[-]test
+#    
+#spring:
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          search-locations: classpath:/shared
+#  profiles:
+#     active: native
+#  application:
+#    name: config-server
+#
+#server:
+#  port: 8769
+
+
+#
+#spring:
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          uri: https://github.com/forezp/SpringcloudConfig
+#          searchPaths: respo #配置文件位于的目录
+#          username:    #github不需要
+#          password:   #github不需要
+#      label: master  #默认
+#  application:
+#    name: config-server

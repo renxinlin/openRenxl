@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: dashboard
+server:
+  port: 12345
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@localhost:9001/eureka
