@@ -28,6 +28,14 @@
 
 	<dependencyManagement>
 		<dependencies>
+
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+				<version>1.2.2.RELEASE</version>
+			</dependency>
+
 			<!-- springboot单元测试 -->
 
 			<dependency>

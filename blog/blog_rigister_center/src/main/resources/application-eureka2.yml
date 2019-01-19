@@ -16,4 +16,8 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://user:password123@localhost:9002/eureka
-
+#//eureka.client.availability-zones 自己的zone
+#https://www.jianshu.com/p/2ca32773b3e5
+#eureka.client.prefer-same-zone-eureka和eureka.instance.metadata-map.zone都有区的概念，
+#但是使用的场景不同。前者是服务向注册中心注册时使用的属性，后者是实例间调用时使用的属性；前者是client的属性，后者是instance的属性，应区分
+ 

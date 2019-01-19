@@ -1,13 +1,13 @@
 server:
-  port: 8891
+  port: 8611
   context-path: /article
 eureka:
   client:
     healthcheck:
       enabled:true
     service-url:
-#      defaultZone: http://user:password123@www.renxl.club:10020/eureka
-      defaultZone: http://user:password123@localhost:9001/eureka
+      defaultZone: http://user:password123@www.renxl.club:10020/eureka
+#      defaultZone: http://user:password123@localhost:9001/eureka
     registry-fetch-interval-seconds: 30 # 客户端更新服务端注册表时间间隔
   instance:
     prefer-ip-address: true
@@ -92,5 +92,454 @@ spring:
       enabled: true
       max-connections: 10
     timeOut: 5000
-
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    
 #-------------------------------------------redis----------------------------------
+
+
+management:
+  security:
+    enabled: false 
+    
+    
+    
+#    
+#=============
+#2019-01-07 00:59:24.457  INFO 14364 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@cdfb3b: startup date [Mon Jan 07 00:59:24 CST 2019]; root of context hierarchy
+#2019-01-07 00:59:25.557  INFO 14364 --- [           main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 00:59:25.724  INFO 14364 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'configurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$786dc166] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#
+#  .   ____          _            __ _ _
+# /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+#( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+# \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+#  '  |____| .__|_| |_|_| |_\__, | / / / /
+# =========|_|==============|___/=/_/_/_/
+# :: Spring Boot ::        (v1.5.2.RELEASE)
+#
+#2019-01-07 00:59:29.711  INFO 14364 --- [           main] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at: http://127.0.0.1:10030
+#2019-01-07 00:59:37.314  INFO 14364 --- [           main] c.c.c.ConfigServicePropertySourceLocator : Located environment: name=my, profiles=[hi], label=master, version=886443649ad115758b7c27d594bcb7026d825170, state=null
+#2019-01-07 00:59:37.315  INFO 14364 --- [           main] b.c.PropertySourceBootstrapConfiguration : Located property source: CompositePropertySource [name='configService', propertySources=[MapPropertySource [name='configClient'], MapPropertySource [name='https://github.com/renxinlin/config/my-hi.yml']]]
+#2019-01-07 00:59:37.329  INFO 14364 --- [           main] club.renxl.www.blog.ArticleApplication   : No active profile set, falling back to default profiles: default
+#2019-01-07 00:59:37.427  INFO 14364 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1f417a7: startup date [Mon Jan 07 00:59:37 CST 2019]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@cdfb3b
+#2019-01-07 00:59:41.506  INFO 14364 --- [           main] o.s.i.config.IntegrationRegistrar        : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+#2019-01-07 00:59:41.878  INFO 14364 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+#2019-01-07 00:59:42.432  INFO 14364 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'counterFactory' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.cloud.netflix.zuul.ZuulServerAutoConfiguration$ZuulMetricsConfiguration; factoryMethodName=counterFactory; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/cloud/netflix/zuul/ZuulServerAutoConfiguration$ZuulMetricsConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.cloud.netflix.zuul.ZuulServerAutoConfiguration$ZuulCounterFactoryConfiguration; factoryMethodName=counterFactory; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/cloud/netflix/zuul/ZuulServerAutoConfiguration$ZuulCounterFactoryConfiguration.class]]
+#2019-01-07 00:59:43.721  INFO 14364 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=bdbcf656-f787-3818-9d7d-a96e584d308b
+#2019-01-07 00:59:43.770  INFO 14364 --- [           main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+#2019-01-07 00:59:43.781  INFO 14364 --- [           main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+#2019-01-07 00:59:43.829  INFO 14364 --- [           main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 00:59:43.992  INFO 14364 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'club.renxl.www.blog.feign.LoginFeignClient' of type [org.springframework.cloud.netflix.feign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#2019-01-07 00:59:44.202  INFO 14364 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration' of type [org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration$$EnhancerBySpringCGLIB$$22bf7c97] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#2019-01-07 00:59:44.755  INFO 14364 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5c53be69] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#2019-01-07 00:59:45.712  INFO 14364 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.netflix.metrics.MetricsInterceptorConfiguration$MetricsRestTemplateConfiguration' of type [org.springframework.cloud.netflix.metrics.MetricsInterceptorConfiguration$MetricsRestTemplateConfiguration$$EnhancerBySpringCGLIB$$8e8064aa] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#2019-01-07 00:59:45.905  INFO 14364 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationGlobalProperties' of type [org.springframework.beans.factory.config.PropertiesFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#2019-01-07 00:59:45.929  INFO 14364 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationGlobalProperties' of type [java.util.Properties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#2019-01-07 00:59:46.186  INFO 14364 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$786dc166] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#2019-01-07 00:59:46.251  INFO 14364 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.stream.config.BindingServiceConfiguration$PostProcessorConfiguration' of type [org.springframework.cloud.stream.config.BindingServiceConfiguration$PostProcessorConfiguration$$EnhancerBySpringCGLIB$$1e1b5c6e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#2019-01-07 00:59:49.008  INFO 14364 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8611 (http)
+#2019-01-07 00:59:49.054  INFO 14364 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+#2019-01-07 00:59:49.058  INFO 14364 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.11
+#2019-01-07 00:59:49.848  INFO 14364 --- [ost-startStop-1] o.a.c.c.C.[.[localhost].[/article]       : Initializing Spring embedded WebApplicationContext
+#2019-01-07 00:59:49.849  INFO 14364 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 12422 ms
+#2019-01-07 00:59:54.573  INFO 14364 --- [ost-startStop-1] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+#2019-01-07 00:59:57.655  INFO 14364 --- [ost-startStop-1] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+#2019-01-07 00:59:59.245  INFO 14364 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'proxyStreamServlet' to [/proxy.stream]
+#2019-01-07 00:59:59.249  INFO 14364 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+#2019-01-07 00:59:59.251  INFO 14364 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'zuulServlet' to [/zuul/*]
+#2019-01-07 00:59:59.266  INFO 14364 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'metricsFilter' to: [/*]
+#2019-01-07 00:59:59.267  INFO 14364 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+#2019-01-07 00:59:59.267  INFO 14364 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+#2019-01-07 00:59:59.268  INFO 14364 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+#2019-01-07 00:59:59.268  INFO 14364 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+#2019-01-07 00:59:59.269  INFO 14364 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webRequestLoggingFilter' to: [/*]
+#2019-01-07 00:59:59.269  INFO 14364 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'applicationContextIdFilter' to: [/*]
+#2019-01-07 01:00:00.022  INFO 14364 --- [           main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+#2019-01-07 01:00:00.932  INFO 14364 --- [           main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-2} inited
+#2019-01-07 01:00:05.817  INFO 14364 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@de035e: startup date [Mon Jan 07 01:00:05 CST 2019]; parent: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1f417a7
+#2019-01-07 01:00:05.901  INFO 14364 --- [           main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 01:00:11.399  INFO 14364 --- [           main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+#2019-01-07 01:00:11.567  INFO 14364 --- [           main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+#2019-01-07 01:00:13.354  INFO 14364 --- [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+#2019-01-07 01:00:13.354  INFO 14364 --- [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+#2019-01-07 01:00:13.991  INFO 14364 --- [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+#2019-01-07 01:00:13.991  INFO 14364 --- [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+#2019-01-07 01:00:14.878  INFO 14364 --- [           main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+#2019-01-07 01:00:15.660  INFO 14364 --- [           main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+#2019-01-07 01:00:15.660  INFO 14364 --- [           main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+#2019-01-07 01:00:15.660  INFO 14364 --- [           main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+#2019-01-07 01:00:15.661  INFO 14364 --- [           main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+#2019-01-07 01:00:15.661  INFO 14364 --- [           main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+#2019-01-07 01:00:15.661  INFO 14364 --- [           main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+#2019-01-07 01:00:15.661  INFO 14364 --- [           main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+#2019-01-07 01:00:16.168  INFO 14364 --- [           main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+#2019-01-07 01:00:16.176  INFO 14364 --- [           main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 5
+#2019-01-07 01:00:16.184  INFO 14364 --- [           main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+#2019-01-07 01:00:16.192  INFO 14364 --- [           main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1546794016191 with initial instances count: 2
+#2019-01-07 01:00:17.933  INFO 14364 --- [           main] o.s.ui.freemarker.SpringTemplateLoader   : SpringTemplateLoader for FreeMarker: using resource loader [org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1f417a7: startup date [Mon Jan 07 00:59:37 CST 2019]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@cdfb3b] and template loader path [classpath:/templates/]
+#2019-01-07 01:00:17.937  INFO 14364 --- [           main] o.s.w.s.v.f.FreeMarkerConfigurer         : ClassTemplateLoader for Spring macros added to FreeMarker configuration
+#2019-01-07 01:00:18.281  WARN 14364 --- [           main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+#2019-01-07 01:00:18.281  INFO 14364 --- [           main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+#2019-01-07 01:00:18.312  INFO 14364 --- [           main] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@189526e
+#2019-01-07 01:00:18.888  WARN 14364 --- [           main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+#2019-01-07 01:00:18.888  INFO 14364 --- [           main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+#2019-01-07 01:00:19.682  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1f417a7: startup date [Mon Jan 07 00:59:37 CST 2019]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@cdfb3b
+#2019-01-07 01:00:20.184  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/comment/publish],methods=[POST]}" onto public club.renxl.www.response.BaseResponse club.renxl.www.blog.httpapi.CommentReplyController.publish(club.renxl.www.blog.article.domain.Comment)
+#2019-01-07 01:00:20.188  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/comment/comments],methods=[POST]}" onto public club.renxl.www.response.BaseResponse club.renxl.www.blog.httpapi.CommentReplyController.lookCommentsById(club.renxl.www.blog.article.domain.Comment)
+#2019-01-07 01:00:20.190  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/images/upload]}" onto public java.lang.Object club.renxl.www.blog.httpapi.ImageUploadController.upload(org.springframework.web.multipart.MultipartFile[])
+#2019-01-07 01:00:20.191  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/images/uploadBatch]}" onto public club.renxl.www.response.BaseResponse club.renxl.www.blog.httpapi.ImageUploadController.uploadBatch(org.springframework.web.multipart.MultipartFile[])
+#2019-01-07 01:00:20.196  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/news/pages],methods=[POST]}" onto public club.renxl.www.response.BaseResponse club.renxl.www.blog.httpapi.NewsController.readArticle(club.renxl.www.pageInfo.PageInfo<club.renxl.www.blog.article.domain.Artitle>)
+#2019-01-07 01:00:20.197  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/news/publish],methods=[POST]}" onto public club.renxl.www.response.BaseResponse club.renxl.www.blog.httpapi.NewsController.publishArticle(club.renxl.www.blog.article.domain.Artitle)
+#2019-01-07 01:00:20.198  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/news/page-detail],methods=[POST]}" onto public club.renxl.www.response.BaseResponse club.renxl.www.blog.httpapi.NewsController.readArticleDetails(club.renxl.www.blog.article.domain.ArtitleVO)
+#2019-01-07 01:00:20.207  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ribbon-hi],methods=[GET]}" onto public java.lang.String club.renxl.www.blog.httpapi.RestTemplateWithRibbon.hi()
+#2019-01-07 01:00:20.208  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/e-info1],methods=[GET]}" onto public java.lang.String club.renxl.www.blog.httpapi.RestTemplateWithRibbon.testRibbon1()
+#2019-01-07 01:00:20.209  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/e-info],methods=[GET]}" onto public java.lang.String club.renxl.www.blog.httpapi.RestTemplateWithRibbon.testRibbon()
+#2019-01-07 01:00:20.218  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/http/look],methods=[GET]}" onto public club.renxl.www.response.BaseResponse club.renxl.www.blog.httpapi.SubwayLateInfo.control1()
+#2019-01-07 01:00:20.219  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/http/subway],methods=[POST]}" onto public club.renxl.www.response.BaseResponse club.renxl.www.blog.httpapi.SubwayLateInfo.look(club.renxl.www.blog.httpapi.UrlData) throws org.apache.http.client.ClientProtocolException,java.io.IOException
+#2019-01-07 01:00:20.220  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/http/job],methods=[GET]}" onto public java.lang.String club.renxl.www.blog.httpapi.SubwayLateInfo.cron()
+#2019-01-07 01:00:20.220  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/http/testConfigWithPath],methods=[GET]}" onto public java.lang.String club.renxl.www.blog.httpapi.SubwayLateInfo.testConfigWithPath()
+#2019-01-07 01:00:20.223  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/welcome/hi1]}" onto public java.util.List<club.renxl.www.blog.article.domain.Artitle> club.renxl.www.blog.httpapi.WelcomeController.hi()
+#2019-01-07 01:00:20.223  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/welcome/hi]}" onto public club.renxl.www.response.BaseResponse club.renxl.www.blog.httpapi.WelcomeController.wel()
+#2019-01-07 01:00:20.225  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hystrix/{path}]}" onto public java.lang.String org.springframework.cloud.netflix.hystrix.dashboard.HystrixDashboardController.monitor(java.lang.String,org.springframework.ui.Model,org.springframework.web.context.request.WebRequest)
+#2019-01-07 01:00:20.226  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hystrix]}" onto public java.lang.String org.springframework.cloud.netflix.hystrix.dashboard.HystrixDashboardController.home(org.springframework.ui.Model,org.springframework.web.context.request.WebRequest)
+#2019-01-07 01:00:20.232  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+#2019-01-07 01:00:20.232  INFO 14364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+#2019-01-07 01:00:20.613  INFO 14364 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+#2019-01-07 01:00:20.614  INFO 14364 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+#2019-01-07 01:00:20.944  INFO 14364 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+#2019-01-07 01:00:21.219  INFO 14364 --- [tbeatExecutor-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611 - Re-registering apps/ARTICLEB1
+#2019-01-07 01:00:21.220  INFO 14364 --- [tbeatExecutor-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611: registering service...
+#2019-01-07 01:00:21.318  INFO 14364 --- [tbeatExecutor-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611 - registration status: 204
+#2019-01-07 01:00:26.510  INFO 14364 --- [           main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'taskScheduler'
+#2019-01-07 01:00:28.612  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/features || /features.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:28.614  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:28.625  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+#2019-01-07 01:00:28.626  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+#2019-01-07 01:00:28.626  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:28.629  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+#2019-01-07 01:00:28.629  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:28.630  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/bus/env],methods=[POST]}" onto public void org.springframework.cloud.bus.endpoint.EnvironmentBusEndpoint.env(java.util.Map<java.lang.String, java.lang.String>,java.lang.String)
+#2019-01-07 01:00:28.632  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:28.634  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+#2019-01-07 01:00:28.635  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+#2019-01-07 01:00:28.637  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:28.639  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+#2019-01-07 01:00:28.642  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:28.645  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/hystrix.stream/**]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.cloud.netflix.endpoint.ServletWrappingEndpoint.handle(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+#2019-01-07 01:00:28.647  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:28.651  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+#2019-01-07 01:00:28.651  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:28.654  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/service-registry/instance-status],methods=[POST]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.cloud.client.serviceregistry.endpoint.ServiceRegistryEndpoint.setStatus(java.lang.String)
+#2019-01-07 01:00:28.654  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/service-registry/instance-status],methods=[GET]}" onto public org.springframework.http.ResponseEntity org.springframework.cloud.client.serviceregistry.endpoint.ServiceRegistryEndpoint.getStatus()
+#2019-01-07 01:00:28.655  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/bus/refresh],methods=[POST]}" onto public void org.springframework.cloud.bus.endpoint.RefreshBusEndpoint.refresh(java.lang.String)
+#2019-01-07 01:00:28.657  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+#2019-01-07 01:00:28.659  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+#2019-01-07 01:00:28.665  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/routes || /routes.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.netflix.zuul.RoutesMvcEndpoint.reset()
+#2019-01-07 01:00:28.666  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/routes || /routes.json],methods=[GET],params=[format],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.cloud.netflix.zuul.RoutesMvcEndpoint.invokeRouteDetails(java.lang.String)
+#2019-01-07 01:00:28.666  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/routes || /routes.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:28.668  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:28.671  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+#2019-01-07 01:00:28.673  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:28.675  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/filters || /filters.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:28.677  INFO 14364 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+#2019-01-07 01:00:32.292  INFO 14364 --- [           main] o.s.integration.channel.DirectChannel    : Channel 'articleb1:8611.springCloudBusInput' has 1 subscriber(s).
+#2019-01-07 01:00:34.044  INFO 14364 --- [           main] o.s.c.n.zuul.ZuulFilterInitializer       : Starting filter initializer
+#2019-01-07 01:00:34.067  WARN 14364 --- [           main] arterDeprecationWarningAutoConfiguration : spring-cloud-starter-eureka is deprecated as of Spring Cloud Netflix 1.4.0, please migrate to spring-cloud-starter-netflix-eureka
+#2019-01-07 01:00:34.454  INFO 14364 --- [           main] o.s.i.codec.kryo.CompositeKryoRegistrar  : configured Kryo registration [40, java.io.File] with serializer org.springframework.integration.codec.kryo.FileSerializer
+#2019-01-07 01:00:35.559  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+#2019-01-07 01:00:35.600  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'rabbitConnectionFactory' has been autodetected for JMX exposure
+#2019-01-07 01:00:35.604  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'integrationMbeanExporter' has been autodetected for JMX exposure
+#2019-01-07 01:00:35.610  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+#2019-01-07 01:00:35.612  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+#2019-01-07 01:00:35.613  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
+#2019-01-07 01:00:35.615  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentBusEndpoint' has been autodetected for JMX exposure
+#2019-01-07 01:00:35.617  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshBusEndpoint' has been autodetected for JMX exposure
+#2019-01-07 01:00:35.621  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'serviceRegistryEndpoint' has been autodetected for JMX exposure
+#2019-01-07 01:00:35.624  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'routesEndpoint' has been autodetected for JMX exposure
+#2019-01-07 01:00:35.626  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'routesMvcEndpoint' has been autodetected for JMX exposure
+#2019-01-07 01:00:35.627  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'filtersEndpoint' has been autodetected for JMX exposure
+#2019-01-07 01:00:35.630  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
+#2019-01-07 01:00:35.641  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+#2019-01-07 01:00:35.688  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'routesEndpoint': registering with JMX server as MBean [org.springframework.cloud.netflix.zuul:name=routesEndpoint,type=RoutesEndpoint]
+#2019-01-07 01:00:35.697  WARN 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with key 'routesEndpoint' has been registered as an MBean but has no exposed attributes or operations
+#2019-01-07 01:00:35.707  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentBusEndpoint': registering with JMX server as MBean [org.springframework.cloud.bus.endpoint:name=environmentBusEndpoint,type=EnvironmentBusEndpoint]
+#2019-01-07 01:00:35.723  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'routesMvcEndpoint': registering with JMX server as MBean [org.springframework.cloud.netflix.zuul:name=routesMvcEndpoint,type=RoutesMvcEndpoint]
+#2019-01-07 01:00:35.741  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'serviceRegistryEndpoint': registering with JMX server as MBean [org.springframework.cloud.client.serviceregistry.endpoint:name=serviceRegistryEndpoint,type=ServiceRegistryEndpoint]
+#2019-01-07 01:00:35.764  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshBusEndpoint': registering with JMX server as MBean [org.springframework.cloud.bus.endpoint:name=refreshBusEndpoint,type=RefreshBusEndpoint]
+#2019-01-07 01:00:35.775  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'filtersEndpoint': registering with JMX server as MBean [org.springframework.cloud.netflix.zuul:name=filtersEndpoint,type=FiltersEndpoint]
+#2019-01-07 01:00:35.778  WARN 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with key 'filtersEndpoint' has been registered as an MBean but has no exposed attributes or operations
+#2019-01-07 01:00:35.785  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+#2019-01-07 01:00:35.836  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'integrationMbeanExporter': registering with JMX server as MBean [org.springframework.integration.monitor:name=integrationMbeanExporter,type=IntegrationMBeanExporter]
+#2019-01-07 01:00:35.953  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=1f417a7,type=ConfigurationPropertiesRebinder]
+#2019-01-07 01:00:35.967  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'rabbitConnectionFactory': registering with JMX server as MBean [org.springframework.amqp.rabbit.connection:name=rabbitConnectionFactory,type=CachingConnectionFactory]
+#2019-01-07 01:00:35.991  INFO 14364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.endpoint:name=refreshEndpoint,type=RefreshEndpoint]
+#2019-01-07 01:00:36.021  INFO 14364 --- [           main] o.s.i.monitor.IntegrationMBeanExporter   : Registering beans for JMX exposure on startup
+#2019-01-07 01:00:36.022  INFO 14364 --- [           main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel springCloudBusInput
+#2019-01-07 01:00:36.037  INFO 14364 --- [           main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=springCloudBusInput': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=springCloudBusInput]
+#2019-01-07 01:00:36.128  INFO 14364 --- [           main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel springCloudBusOutput
+#2019-01-07 01:00:36.133  INFO 14364 --- [           main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=springCloudBusOutput': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=springCloudBusOutput]
+#2019-01-07 01:00:36.161  INFO 14364 --- [           main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel nullChannel
+#2019-01-07 01:00:36.165  INFO 14364 --- [           main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=nullChannel': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=nullChannel]
+#2019-01-07 01:00:36.181  INFO 14364 --- [           main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel errorChannel
+#2019-01-07 01:00:36.185  INFO 14364 --- [           main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=errorChannel': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=errorChannel]
+#2019-01-07 01:00:36.292  INFO 14364 --- [           main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageHandler errorLogger
+#2019-01-07 01:00:36.298  INFO 14364 --- [           main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageHandler,name=errorLogger,bean=internal': registering with JMX server as MBean [org.springframework.integration:type=MessageHandler,name=errorLogger,bean=internal]
+#2019-01-07 01:00:36.420  INFO 14364 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147482648
+#2019-01-07 01:00:39.781  INFO 14364 --- [           main] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at: http://127.0.0.1:10030
+#2019-01-07 01:00:44.606  INFO 14364 --- [           main] c.c.c.ConfigServicePropertySourceLocator : Located environment: name=my, profiles=[hi], label=master, version=886443649ad115758b7c27d594bcb7026d825170, state=null
+#2019-01-07 01:00:44.607  INFO 14364 --- [           main] b.c.PropertySourceBootstrapConfiguration : Located property source: CompositePropertySource [name='configService', propertySources=[MapPropertySource [name='configClient'], MapPropertySource [name='https://github.com/renxinlin/config/my-hi.yml']]]
+#2019-01-07 01:00:44.616  INFO 14364 --- [           main] club.renxl.www.blog.ArticleApplication   : No active profile set, falling back to default profiles: default
+#2019-01-07 01:00:44.626  INFO 14364 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@14c3bae: startup date [Mon Jan 07 01:00:44 CST 2019]; parent: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1f417a7
+#2019-01-07 01:00:44.812  INFO 14364 --- [           main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 01:00:45.132  INFO 14364 --- [           main] o.s.c.support.GenericApplicationContext  : Refreshing org.springframework.context.support.GenericApplicationContext@26770d: startup date [Mon Jan 07 01:00:45 CST 2019]; root of context hierarchy
+#2019-01-07 01:00:45.251  INFO 14364 --- [           main] club.renxl.www.blog.ArticleApplication   : Started ArticleApplication in 8.735 seconds (JVM running for 88.661)
+#2019-01-07 01:00:45.720  INFO 14364 --- [           main] o.s.a.r.c.CachingConnectionFactory       : Created new connection: SimpleConnection@1f3af3d [delegate=amqp://guest@127.0.0.1:5672/, localPort= 55214]
+#2019-01-07 01:00:45.875  INFO 14364 --- [           main] o.s.integration.channel.DirectChannel    : Channel 'articleb1:8611.springCloudBusOutput' has 1 subscriber(s).
+#2019-01-07 01:00:45.880  INFO 14364 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+#2019-01-07 01:00:45.881  INFO 14364 --- [           main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application articleb1 with eureka with status UP
+#2019-01-07 01:00:45.882  INFO 14364 --- [           main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1546794045882, current=UP, previous=STARTING]
+#2019-01-07 01:00:45.888  INFO 14364 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611: registering service...
+#2019-01-07 01:00:45.903  INFO 14364 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611 - registration status: 204
+#2019-01-07 01:00:46.067  INFO 14364 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+#2019-01-07 01:00:46.067  INFO 14364 --- [           main] o.s.i.channel.PublishSubscribeChannel    : Channel 'articleb1:8611.errorChannel' has 1 subscriber(s).
+#2019-01-07 01:00:46.067  INFO 14364 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : started _org.springframework.integration.errorLogger
+#2019-01-07 01:00:46.068  INFO 14364 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147482647
+#2019-01-07 01:00:46.132  INFO 14364 --- [           main] o.s.c.s.b.r.RabbitMessageChannelBinder   : declaring queue for inbound: springCloudBus.anonymous.uT1dcmIqT7mt-6ilFc7UWQ, bound to: springCloudBus
+#2019-01-07 01:00:46.324  INFO 14364 --- [           main] o.s.i.a.i.AmqpInboundChannelAdapter      : started inbound.springCloudBus.anonymous.ImkrFm19QuuMjUKUpfbqdw
+#2019-01-07 01:00:46.325  INFO 14364 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : Adding {message-handler:inbound.springCloudBus.default} as a subscriber to the 'bridge.springCloudBus' channel
+#2019-01-07 01:00:46.326  INFO 14364 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : started inbound.springCloudBus.default
+#2019-01-07 01:00:46.328  INFO 14364 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+#2019-01-07 01:00:46.343  INFO 14364 --- [           main] ration$HystrixMetricsPollerConfiguration : Starting poller
+#2019-01-07 01:00:47.184  INFO 14364 --- [enerContainer-1] c.renxl.www.blog.httpapi.SubwayLateInfo  : ========================================数据监控简单版=============================
+#2019-01-07 01:00:47.184  INFO 14364 --- [enerContainer-1] c.renxl.www.blog.httpapi.SubwayLateInfo  : job:2019-01-07 01:00:00
+#2019-01-07 01:00:47.272  INFO 14364 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8611 (http)
+#2019-01-07 01:00:47.275  INFO 14364 --- [           main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8611
+#2019-01-07 01:00:47.322  INFO 14364 --- [           main] club.renxl.www.blog.ArticleApplication   : Started ArticleApplication in 87.454 seconds (JVM running for 90.732)
+#2019-01-07 01:00:52.780  INFO 14364 --- [nio-8611-exec-1] o.a.c.c.C.[.[localhost].[/article]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+#2019-01-07 01:00:52.780  INFO 14364 --- [nio-8611-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+#2019-01-07 01:00:52.971  INFO 14364 --- [nio-8611-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 190 ms
+#2019-01-07 01:00:53.042  INFO 14364 --- [nio-8611-exec-1] o.s.c.n.zuul.web.ZuulHandlerMapping      : Mapped URL path [/eurekaserver/**] onto handler of type [class org.springframework.cloud.netflix.zuul.web.ZuulController]
+#2019-01-07 01:01:12.230  WARN 14364 --- [nio-8611-exec-2] o.s.web.servlet.PageNotFound             : Request method 'GET' not supported
+#2019-01-07 01:02:35.378  WARN 14364 --- [nio-8611-exec-5] o.s.web.servlet.PageNotFound             : Request method 'GET' not supported
+#2019-01-07 01:03:49.866  INFO 14364 --- [nio-8611-exec-7] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+#2019-01-07 01:03:50.179  INFO 14364 --- [nio-8611-exec-7] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@1a7a40c: startup date [Mon Jan 07 01:03:50 CST 2019]; root of context hierarchy
+#2019-01-07 01:03:50.324  INFO 14364 --- [nio-8611-exec-7] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 01:03:50.467  INFO 14364 --- [nio-8611-exec-7] trationDelegate$BeanPostProcessorChecker : Bean 'configurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$786dc166] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#2019-01-07 01:03:53.358  INFO 14364 --- [nio-8611-exec-7] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+#2019-01-07 01:03:53.686  INFO 14364 --- [nio-8611-exec-7] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at: http://127.0.0.1:10030
+#2019-01-07 01:03:57.723  INFO 14364 --- [nio-8611-exec-7] c.c.c.ConfigServicePropertySourceLocator : Located environment: name=my, profiles=[hi], label=master, version=886443649ad115758b7c27d594bcb7026d825170, state=null
+#2019-01-07 01:03:57.724  INFO 14364 --- [nio-8611-exec-7] b.c.PropertySourceBootstrapConfiguration : Located property source: CompositePropertySource [name='configService', propertySources=[MapPropertySource [name='configClient'], MapPropertySource [name='https://github.com/renxinlin/config/my-hi.yml']]]
+#2019-01-07 01:03:57.730  INFO 14364 --- [nio-8611-exec-7] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+#2019-01-07 01:03:57.737  INFO 14364 --- [nio-8611-exec-7] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@17e24f6: startup date [Mon Jan 07 01:03:57 CST 2019]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@1a7a40c
+#2019-01-07 01:03:57.749  INFO 14364 --- [nio-8611-exec-7] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 01:03:57.800  INFO 14364 --- [nio-8611-exec-7] o.s.boot.SpringApplication               : Started application in 10.598 seconds (JVM running for 281.211)
+#2019-01-07 01:03:57.801  INFO 14364 --- [nio-8611-exec-7] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@17e24f6: startup date [Mon Jan 07 01:03:57 CST 2019]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@1a7a40c
+#2019-01-07 01:03:57.803  INFO 14364 --- [nio-8611-exec-7] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@1a7a40c: startup date [Mon Jan 07 01:03:50 CST 2019]; root of context hierarchy
+#2019-01-07 01:03:59.043  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+#2019-01-07 01:03:59.050  INFO 14364 --- [nio-8611-exec-7] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+#2019-01-07 01:03:59.055  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+#2019-01-07 01:03:59.069  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611 - deregister  status: 200
+#2019-01-07 01:03:59.081  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+#2019-01-07 01:03:59.100  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+#2019-01-07 01:03:59.116  INFO 14364 --- [nio-8611-exec-7] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+#2019-01-07 01:03:59.117  INFO 14364 --- [nio-8611-exec-7] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+#2019-01-07 01:03:59.117  INFO 14364 --- [nio-8611-exec-7] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+#2019-01-07 01:03:59.117  INFO 14364 --- [nio-8611-exec-7] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+#2019-01-07 01:03:59.407  INFO 14364 --- [nio-8611-exec-7] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+#2019-01-07 01:03:59.410  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+#2019-01-07 01:03:59.410  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+#2019-01-07 01:03:59.410  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+#2019-01-07 01:03:59.410  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Application is null : false
+#2019-01-07 01:03:59.410  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+#2019-01-07 01:03:59.410  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+#2019-01-07 01:03:59.410  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+#2019-01-07 01:03:59.422  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : The response status is 200
+#2019-01-07 01:03:59.424  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 5
+#2019-01-07 01:03:59.425  INFO 14364 --- [nio-8611-exec-7] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+#2019-01-07 01:03:59.426  INFO 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1546794239426 with initial instances count: 2
+#2019-01-07 01:03:59.470  INFO 14364 --- [nio-8611-exec-7] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application articleb1 with eureka with status DOWN
+#2019-01-07 01:03:59.471  INFO 14364 --- [nio-8611-exec-7] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application articleb1 with eureka with status UP
+#2019-01-07 01:03:59.471  WARN 14364 --- [nio-8611-exec-7] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1546794239471, current=UP, previous=DOWN]
+#2019-01-07 01:03:59.472  INFO 14364 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611: registering service...
+#2019-01-07 01:03:59.477  INFO 14364 --- [nio-8611-exec-7] o.s.cloud.bus.event.RefreshListener      : Received remote refresh request. Keys refreshed []
+#2019-01-07 01:03:59.495  INFO 14364 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611 - registration status: 204
+#2019-01-07 01:04:37.415  INFO 14364 --- [nio-8611-exec-8] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+#2019-01-07 01:04:37.625  INFO 14364 --- [nio-8611-exec-8] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@16a8d81: startup date [Mon Jan 07 01:04:37 CST 2019]; root of context hierarchy
+#2019-01-07 01:04:37.696  INFO 14364 --- [nio-8611-exec-8] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 01:04:37.701  INFO 14364 --- [nio-8611-exec-8] trationDelegate$BeanPostProcessorChecker : Bean 'configurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$786dc166] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#2019-01-07 01:04:40.223  INFO 14364 --- [nio-8611-exec-8] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+#2019-01-07 01:04:40.459  INFO 14364 --- [nio-8611-exec-8] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at: http://127.0.0.1:10030
+#2019-01-07 01:04:44.948  INFO 14364 --- [nio-8611-exec-8] c.c.c.ConfigServicePropertySourceLocator : Located environment: name=my, profiles=[hi], label=master, version=886443649ad115758b7c27d594bcb7026d825170, state=null
+#2019-01-07 01:04:44.948  INFO 14364 --- [nio-8611-exec-8] b.c.PropertySourceBootstrapConfiguration : Located property source: CompositePropertySource [name='configService', propertySources=[MapPropertySource [name='configClient'], MapPropertySource [name='https://github.com/renxinlin/config/my-hi.yml']]]
+#2019-01-07 01:04:44.955  INFO 14364 --- [nio-8611-exec-8] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+#2019-01-07 01:04:44.961  INFO 14364 --- [nio-8611-exec-8] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@133ef00: startup date [Mon Jan 07 01:04:44 CST 2019]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@16a8d81
+#2019-01-07 01:04:44.966  INFO 14364 --- [nio-8611-exec-8] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 01:04:44.990  INFO 14364 --- [nio-8611-exec-8] o.s.boot.SpringApplication               : Started application in 10.112 seconds (JVM running for 328.401)
+#2019-01-07 01:04:44.991  INFO 14364 --- [nio-8611-exec-8] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@133ef00: startup date [Mon Jan 07 01:04:44 CST 2019]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@16a8d81
+#2019-01-07 01:04:44.993  INFO 14364 --- [nio-8611-exec-8] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@16a8d81: startup date [Mon Jan 07 01:04:37 CST 2019]; root of context hierarchy
+#2019-01-07 01:04:45.636  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+#2019-01-07 01:04:45.639  INFO 14364 --- [nio-8611-exec-8] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+#2019-01-07 01:04:45.644  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+#2019-01-07 01:04:45.655  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611 - deregister  status: 200
+#2019-01-07 01:04:45.661  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+#2019-01-07 01:04:45.666  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+#2019-01-07 01:04:45.676  INFO 14364 --- [nio-8611-exec-8] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+#2019-01-07 01:04:45.676  INFO 14364 --- [nio-8611-exec-8] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+#2019-01-07 01:04:45.676  INFO 14364 --- [nio-8611-exec-8] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+#2019-01-07 01:04:45.677  INFO 14364 --- [nio-8611-exec-8] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+#2019-01-07 01:04:45.926  INFO 14364 --- [nio-8611-exec-8] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+#2019-01-07 01:04:45.928  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+#2019-01-07 01:04:45.928  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+#2019-01-07 01:04:45.928  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+#2019-01-07 01:04:45.929  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Application is null : false
+#2019-01-07 01:04:45.929  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+#2019-01-07 01:04:45.929  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+#2019-01-07 01:04:45.929  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+#2019-01-07 01:04:45.940  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : The response status is 200
+#2019-01-07 01:04:45.941  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 5
+#2019-01-07 01:04:45.942  INFO 14364 --- [nio-8611-exec-8] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+#2019-01-07 01:04:45.944  INFO 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1546794285943 with initial instances count: 2
+#2019-01-07 01:04:45.967  INFO 14364 --- [nio-8611-exec-8] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application articleb1 with eureka with status DOWN
+#2019-01-07 01:04:45.968  INFO 14364 --- [nio-8611-exec-8] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application articleb1 with eureka with status UP
+#2019-01-07 01:04:45.969  WARN 14364 --- [nio-8611-exec-8] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1546794285969, current=UP, previous=DOWN]
+#2019-01-07 01:04:45.970  INFO 14364 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611: registering service...
+#2019-01-07 01:04:45.971  INFO 14364 --- [nio-8611-exec-8] o.s.cloud.bus.event.RefreshListener      : Received remote refresh request. Keys refreshed []
+#2019-01-07 01:04:45.993  INFO 14364 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611 - registration status: 204
+#2019-01-07 01:05:04.950  INFO 14364 --- [nio-8611-exec-9] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+#2019-01-07 01:05:05.106  INFO 14364 --- [nio-8611-exec-9] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@1430448: startup date [Mon Jan 07 01:05:05 CST 2019]; root of context hierarchy
+#2019-01-07 01:05:05.149  INFO 14364 --- [nio-8611-exec-9] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 01:05:05.154  INFO 14364 --- [nio-8611-exec-9] trationDelegate$BeanPostProcessorChecker : Bean 'configurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$786dc166] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#2019-01-07 01:05:07.808  INFO 14364 --- [nio-8611-exec-9] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+#2019-01-07 01:05:07.999  INFO 14364 --- [nio-8611-exec-9] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at: http://127.0.0.1:10030
+#2019-01-07 01:05:13.895  INFO 14364 --- [nio-8611-exec-9] c.c.c.ConfigServicePropertySourceLocator : Located environment: name=my, profiles=[hi], label=master, version=9a809e156c2874dd1cd7b7762a0a18ae74c09060, state=null
+#2019-01-07 01:05:13.896  INFO 14364 --- [nio-8611-exec-9] b.c.PropertySourceBootstrapConfiguration : Located property source: CompositePropertySource [name='configService', propertySources=[MapPropertySource [name='configClient'], MapPropertySource [name='https://github.com/renxinlin/config/my-hi.yml']]]
+#2019-01-07 01:05:13.907  INFO 14364 --- [nio-8611-exec-9] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+#2019-01-07 01:05:13.928  INFO 14364 --- [nio-8611-exec-9] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@8e3215: startup date [Mon Jan 07 01:05:13 CST 2019]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@1430448
+#2019-01-07 01:05:13.935  INFO 14364 --- [nio-8611-exec-9] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 01:05:13.961  INFO 14364 --- [nio-8611-exec-9] o.s.boot.SpringApplication               : Started application in 11.616 seconds (JVM running for 357.371)
+#2019-01-07 01:05:13.962  INFO 14364 --- [nio-8611-exec-9] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@8e3215: startup date [Mon Jan 07 01:05:13 CST 2019]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@1430448
+#2019-01-07 01:05:13.964  INFO 14364 --- [nio-8611-exec-9] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@1430448: startup date [Mon Jan 07 01:05:05 CST 2019]; root of context hierarchy
+#2019-01-07 01:05:14.718  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+#2019-01-07 01:05:14.719  INFO 14364 --- [nio-8611-exec-9] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+#2019-01-07 01:05:14.723  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+#2019-01-07 01:05:14.738  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611 - deregister  status: 200
+#2019-01-07 01:05:14.745  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+#2019-01-07 01:05:14.749  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+#2019-01-07 01:05:14.756  INFO 14364 --- [nio-8611-exec-9] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+#2019-01-07 01:05:14.756  INFO 14364 --- [nio-8611-exec-9] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+#2019-01-07 01:05:14.756  INFO 14364 --- [nio-8611-exec-9] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+#2019-01-07 01:05:14.756  INFO 14364 --- [nio-8611-exec-9] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+#2019-01-07 01:05:15.048  INFO 14364 --- [nio-8611-exec-9] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+#2019-01-07 01:05:15.051  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+#2019-01-07 01:05:15.051  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+#2019-01-07 01:05:15.051  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+#2019-01-07 01:05:15.051  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Application is null : false
+#2019-01-07 01:05:15.052  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+#2019-01-07 01:05:15.052  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+#2019-01-07 01:05:15.052  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+#2019-01-07 01:05:15.070  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : The response status is 200
+#2019-01-07 01:05:15.072  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 5
+#2019-01-07 01:05:15.074  INFO 14364 --- [nio-8611-exec-9] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+#2019-01-07 01:05:15.075  INFO 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1546794315075 with initial instances count: 2
+#2019-01-07 01:05:15.093  INFO 14364 --- [nio-8611-exec-9] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application articleb1 with eureka with status DOWN
+#2019-01-07 01:05:15.094  INFO 14364 --- [nio-8611-exec-9] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application articleb1 with eureka with status UP
+#2019-01-07 01:05:15.094  WARN 14364 --- [nio-8611-exec-9] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1546794315094, current=UP, previous=DOWN]
+#2019-01-07 01:05:15.096  INFO 14364 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611: registering service...
+#2019-01-07 01:05:15.096  INFO 14364 --- [nio-8611-exec-9] o.s.cloud.bus.event.RefreshListener      : Received remote refresh request. Keys refreshed [config.client.version, queueName]
+#2019-01-07 01:05:15.114  INFO 14364 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611 - registration status: 204
+#2019-01-07 01:05:30.545  WARN 14364 --- [nio-8611-exec-1] o.s.web.servlet.PageNotFound             : Request method 'GET' not supported
+#2019-01-07 01:06:58.166  INFO 14364 --- [nio-8611-exec-4] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+#2019-01-07 01:06:58.410  INFO 14364 --- [nio-8611-exec-4] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@1081e97: startup date [Mon Jan 07 01:06:58 CST 2019]; root of context hierarchy
+#2019-01-07 01:06:58.496  INFO 14364 --- [nio-8611-exec-4] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 01:06:58.503  INFO 14364 --- [nio-8611-exec-4] trationDelegate$BeanPostProcessorChecker : Bean 'configurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$786dc166] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#2019-01-07 01:07:01.151  INFO 14364 --- [nio-8611-exec-4] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+#2019-01-07 01:07:01.458  INFO 14364 --- [nio-8611-exec-4] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at: http://127.0.0.1:10030
+#2019-01-07 01:07:07.439  INFO 14364 --- [nio-8611-exec-4] c.c.c.ConfigServicePropertySourceLocator : Located environment: name=my, profiles=[hi], label=master, version=f0064f9f91a3a6255d08db2d6b30cd628f66d57e, state=null
+#2019-01-07 01:07:07.439  INFO 14364 --- [nio-8611-exec-4] b.c.PropertySourceBootstrapConfiguration : Located property source: CompositePropertySource [name='configService', propertySources=[MapPropertySource [name='configClient'], MapPropertySource [name='https://github.com/renxinlin/config/my-hi.yml']]]
+#2019-01-07 01:07:07.446  INFO 14364 --- [nio-8611-exec-4] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+#2019-01-07 01:07:07.453  INFO 14364 --- [nio-8611-exec-4] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@1653a6e: startup date [Mon Jan 07 01:07:07 CST 2019]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@1081e97
+#2019-01-07 01:07:07.456  INFO 14364 --- [nio-8611-exec-4] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 01:07:07.477  INFO 14364 --- [nio-8611-exec-4] o.s.boot.SpringApplication               : Started application in 11.862 seconds (JVM running for 470.887)
+#2019-01-07 01:07:07.478  INFO 14364 --- [nio-8611-exec-4] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@1653a6e: startup date [Mon Jan 07 01:07:07 CST 2019]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@1081e97
+#2019-01-07 01:07:07.479  INFO 14364 --- [nio-8611-exec-4] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@1081e97: startup date [Mon Jan 07 01:06:58 CST 2019]; root of context hierarchy
+#2019-01-07 01:07:08.091  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+#2019-01-07 01:07:08.093  INFO 14364 --- [nio-8611-exec-4] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+#2019-01-07 01:07:08.096  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+#2019-01-07 01:07:08.106  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611 - deregister  status: 200
+#2019-01-07 01:07:08.112  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+#2019-01-07 01:07:08.116  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+#2019-01-07 01:07:08.123  INFO 14364 --- [nio-8611-exec-4] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+#2019-01-07 01:07:08.123  INFO 14364 --- [nio-8611-exec-4] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+#2019-01-07 01:07:08.123  INFO 14364 --- [nio-8611-exec-4] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+#2019-01-07 01:07:08.123  INFO 14364 --- [nio-8611-exec-4] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+#2019-01-07 01:07:08.382  INFO 14364 --- [nio-8611-exec-4] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+#2019-01-07 01:07:08.384  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+#2019-01-07 01:07:08.384  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+#2019-01-07 01:07:08.384  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+#2019-01-07 01:07:08.385  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Application is null : false
+#2019-01-07 01:07:08.385  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+#2019-01-07 01:07:08.385  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+#2019-01-07 01:07:08.385  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+#2019-01-07 01:07:08.396  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : The response status is 200
+#2019-01-07 01:07:08.397  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 5
+#2019-01-07 01:07:08.398  INFO 14364 --- [nio-8611-exec-4] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+#2019-01-07 01:07:08.400  INFO 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1546794428400 with initial instances count: 2
+#2019-01-07 01:07:08.413  INFO 14364 --- [nio-8611-exec-4] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application articleb1 with eureka with status DOWN
+#2019-01-07 01:07:08.413  INFO 14364 --- [nio-8611-exec-4] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application articleb1 with eureka with status UP
+#2019-01-07 01:07:08.413  WARN 14364 --- [nio-8611-exec-4] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1546794428413, current=UP, previous=DOWN]
+#2019-01-07 01:07:08.415  INFO 14364 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611: registering service...
+#2019-01-07 01:07:08.415  INFO 14364 --- [nio-8611-exec-4] o.s.cloud.bus.event.RefreshListener      : Received remote refresh request. Keys refreshed [config.client.version, queueName]
+#2019-01-07 01:07:08.435  INFO 14364 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611 - registration status: 204
+#2019-01-07 01:09:48.893  INFO 14364 --- [enerContainer-1] c.renxl.www.blog.httpapi.SubwayLateInfo  : ========================================数据监控简单版=============================
+#2019-01-07 01:09:48.893  INFO 14364 --- [enerContainer-1] c.renxl.www.blog.httpapi.SubwayLateInfo  : renxl===============
+#2019-01-07 01:10:25.913  INFO 14364 --- [enerContainer-1] c.renxl.www.blog.httpapi.SubwayLateInfo  : ========================================数据监控简单版=============================
+#2019-01-07 01:10:25.914  INFO 14364 --- [enerContainer-1] c.renxl.www.blog.httpapi.SubwayLateInfo  : Enter some text here for the message body...
+#2019-01-07 01:10:47.371  INFO 14364 --- [nio-8611-exec-6] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+#2019-01-07 01:10:47.606  INFO 14364 --- [nio-8611-exec-6] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@1b67f78: startup date [Mon Jan 07 01:10:47 CST 2019]; root of context hierarchy
+#2019-01-07 01:10:47.695  INFO 14364 --- [nio-8611-exec-6] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 01:10:47.701  INFO 14364 --- [nio-8611-exec-6] trationDelegate$BeanPostProcessorChecker : Bean 'configurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$786dc166] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+#2019-01-07 01:10:50.256  INFO 14364 --- [nio-8611-exec-6] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+#2019-01-07 01:10:50.491  INFO 14364 --- [nio-8611-exec-6] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at: http://127.0.0.1:10030
+#2019-01-07 01:10:52.334  INFO 14364 --- [enerContainer-1] c.renxl.www.blog.httpapi.SubwayLateInfo  : ========================================数据监控简单版=============================
+#2019-01-07 01:10:52.334  INFO 14364 --- [enerContainer-1] c.renxl.www.blog.httpapi.SubwayLateInfo  : Enter some text here for the message body...renxl
+#2019-01-07 01:10:56.516  INFO 14364 --- [nio-8611-exec-6] c.c.c.ConfigServicePropertySourceLocator : Located environment: name=my, profiles=[hi], label=master, version=f58e361a0eea096ebeafc9d1e7b144e436a10c1e, state=null
+#2019-01-07 01:10:56.516  INFO 14364 --- [nio-8611-exec-6] b.c.PropertySourceBootstrapConfiguration : Located property source: CompositePropertySource [name='configService', propertySources=[MapPropertySource [name='configClient'], MapPropertySource [name='https://github.com/renxinlin/config/my-hi.yml']]]
+#2019-01-07 01:10:56.523  INFO 14364 --- [nio-8611-exec-6] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+#2019-01-07 01:10:56.529  INFO 14364 --- [nio-8611-exec-6] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@710921: startup date [Mon Jan 07 01:10:56 CST 2019]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@1b67f78
+#2019-01-07 01:10:56.533  INFO 14364 --- [nio-8611-exec-6] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+#2019-01-07 01:10:56.558  INFO 14364 --- [nio-8611-exec-6] o.s.boot.SpringApplication               : Started application in 12.047 seconds (JVM running for 699.968)
+#2019-01-07 01:10:56.558  INFO 14364 --- [nio-8611-exec-6] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@710921: startup date [Mon Jan 07 01:10:56 CST 2019]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@1b67f78
+#2019-01-07 01:10:56.560  INFO 14364 --- [nio-8611-exec-6] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@1b67f78: startup date [Mon Jan 07 01:10:47 CST 2019]; root of context hierarchy
+#2019-01-07 01:10:57.145  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+#2019-01-07 01:10:57.147  INFO 14364 --- [nio-8611-exec-6] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+#2019-01-07 01:10:57.150  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+#2019-01-07 01:10:57.161  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611 - deregister  status: 200
+#2019-01-07 01:10:57.166  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+#2019-01-07 01:10:57.170  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+#2019-01-07 01:10:57.178  INFO 14364 --- [nio-8611-exec-6] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+#2019-01-07 01:10:57.178  INFO 14364 --- [nio-8611-exec-6] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+#2019-01-07 01:10:57.178  INFO 14364 --- [nio-8611-exec-6] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+#2019-01-07 01:10:57.178  INFO 14364 --- [nio-8611-exec-6] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+#2019-01-07 01:10:57.445  INFO 14364 --- [nio-8611-exec-6] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+#2019-01-07 01:10:57.447  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+#2019-01-07 01:10:57.447  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+#2019-01-07 01:10:57.448  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+#2019-01-07 01:10:57.448  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Application is null : false
+#2019-01-07 01:10:57.448  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+#2019-01-07 01:10:57.448  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+#2019-01-07 01:10:57.448  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+#2019-01-07 01:10:57.462  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : The response status is 200
+#2019-01-07 01:10:57.463  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 5
+#2019-01-07 01:10:57.464  INFO 14364 --- [nio-8611-exec-6] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+#2019-01-07 01:10:57.466  INFO 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1546794657466 with initial instances count: 2
+#2019-01-07 01:10:57.480  INFO 14364 --- [nio-8611-exec-6] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application articleb1 with eureka with status DOWN
+#2019-01-07 01:10:57.480  INFO 14364 --- [nio-8611-exec-6] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application articleb1 with eureka with status UP
+#2019-01-07 01:10:57.480  WARN 14364 --- [nio-8611-exec-6] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1546794657480, current=UP, previous=DOWN]
+#2019-01-07 01:10:57.482  INFO 14364 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611: registering service...
+#2019-01-07 01:10:57.482  INFO 14364 --- [nio-8611-exec-6] o.s.cloud.bus.event.RefreshListener      : Received remote refresh request. Keys refreshed [management.endpoints.web.exposure.include, config.client.version, queueName]
+#2019-01-07 01:10:57.502  INFO 14364 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ARTICLEB1/articleb1:192.168.217.1:8611 - registration status: 204
+#    

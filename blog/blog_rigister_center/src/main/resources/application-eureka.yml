@@ -16,7 +16,6 @@ eureka:
     fetch-registry: false # 此客户端是否获取eureka服务器注册表上的注册信息，默认为true
     service-url:
       defaultZone: http://user:password123@localhost:10020/eureka# 默认的服务注册地址（这里写不写一样）
- 
       
 #      feign整合断路器默认的超时时间是1秒 可以设置feign的超时时间在一个合理值
 

@@ -11,6 +11,8 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 /**
  * 文章管理发布 == > 演进方向，加视频 评论 图片 文章类别（社交方向）
  * @port 8990
@@ -34,8 +36,10 @@ public class ArticleApplication {
 	 */
 	// 基础提供者一律采用restTemplate
 	// 消费者一律采用声明式rest feign
+    @HystrixCommand
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(ArticleApplication.class).web(true).run(args);
+		System.out.println("======老板出没,红包发来=======");
 
 	}
 
